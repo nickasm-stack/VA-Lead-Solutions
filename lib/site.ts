@@ -1,70 +1,54 @@
 import { brand } from "@/data/copy";
 
 /**
- * Canonical origin.
+ * The site's canonical domain.
  *
- * Resolution order:
- *   1. NEXT_PUBLIC_SITE_URL — set this explicitly once the domain is known.
- *   2. VERCEL_PROJECT_PRODUCTION_URL — Vercel injects the project's production
- *      domain at build time, so a correctly attached custom domain is picked
- *      up with no configuration at all.
- *
- * There is deliberately no fallback to a guessed domain. A canonical tag
- * naming the wrong host tells search engines the real page lives somewhere
- * else, which is worse than publishing no canonical: it can suppress the
- * actual site. When neither source is set the site builds, but serves
- * noindex — see isIndexable below.
- *
- * Server-only: read at build time during static generation. Do not import
- * this into a client component.
+ * Confirmed as an assumption rather than verified against the registrar — if
+ * the domain that was actually purchased differs, this is the single line to
+ * change (and `brand.email` in data/copy.ts probably needs the same edit,
+ * since it shares the domain).
  */
+const ASSUMED_SITE_URL = "https://valeadsolutions.com";
+
 const explicitUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-const vercelProductionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
-
-const resolvedUrl =
-  explicitUrl || (vercelProductionUrl ? `https://${vercelProductionUrl}` : undefined);
+const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
 
 /**
- * Vercel's own preview/production hostname is not the site's identity. If it
- * were indexed, Google would hold a *.vercel.app copy of every page, which
- * then competes with the real domain for the same content once it is
- * attached. Treated as "not configured" so it serves noindex.
+ * A *.vercel.app hostname is the deployment's address, not the site's
+ * identity, so it is never used as the canonical origin and never indexed —
+ * otherwise Google ends up holding a second copy of the site there, competing
+ * with the real domain for the same content.
  */
-const isVercelHostname = /\.vercel\.app$/.test(
-  resolvedUrl ? new URL(resolvedUrl).hostname : "",
-);
-
-/** False when the domain is unknown or is Vercel's own — both force noindex. */
-export const siteUrlIsConfigured = Boolean(resolvedUrl) && !isVercelHostname;
+const onVercelHostname = Boolean(vercelHost && /\.vercel\.app$/.test(vercelHost));
 
 /**
- * Falls back to localhost rather than a plausible-looking domain, so an
- * unconfigured build is obviously unconfigured instead of quietly wrong.
+ * Canonical origin, no trailing slash. An explicit NEXT_PUBLIC_SITE_URL wins;
+ * otherwise a real domain attached in Vercel; otherwise the assumption above.
+ * A preview deployment still canonicalises to the real domain, which is what
+ * points search engines at production rather than at the preview.
  */
-export const siteUrl = (resolvedUrl ?? "http://localhost:3000").replace(/\/$/, "");
+export const siteUrl = (
+  explicitUrl ||
+  (onVercelHostname ? ASSUMED_SITE_URL : vercelHost && `https://${vercelHost}`) ||
+  ASSUMED_SITE_URL
+).replace(/\/$/, "");
 
 /**
- * Indexable only when the domain is known and indexing has not been turned
- * off. Set NEXT_PUBLIC_SITE_INDEXABLE=false for preview deployments, or to
- * hold indexing until the bracketed placeholders in data/copy.ts are replaced
- * — whatever Google indexes is what it shows in results.
+ * Set NEXT_PUBLIC_SITE_INDEXABLE=false to serve noindex and a disallow-all
+ * robots.txt — for a staging deployment, or to hold indexing until the
+ * bracketed placeholders in data/copy.ts are replaced with real copy.
+ * Whatever Google indexes is what it shows in results, placeholders included,
+ * and removing them again is slow.
  */
 const indexingDisabled = process.env.NEXT_PUBLIC_SITE_INDEXABLE === "false";
-export const isIndexable = !indexingDisabled && siteUrlIsConfigured;
+export const isIndexable = !indexingDisabled && !onVercelHostname;
 
-if (!siteUrlIsConfigured) {
-  // Surfaces in the build log rather than failing the build, so a first
-  // deploy still works — it just will not be indexed.
+if (onVercelHostname) {
   console.warn(
-    isVercelHostname
-      ? `\n[site] Building on ${resolvedUrl} — Vercel's own hostname, not the\n` +
-        "       site's real domain. Serving noindex so this copy cannot be\n" +
-        "       indexed and compete with the real domain later.\n" +
-        "       Attach the production domain in Vercel, or set\n" +
-        "       NEXT_PUBLIC_SITE_URL, and the site becomes indexable.\n"
-      : "\n[site] No domain configured: set NEXT_PUBLIC_SITE_URL (or attach the\n" +
-        "       production domain in Vercel). Building with noindex and\n" +
-        "       localhost URLs so nothing wrong gets published.\n",
+    `\n[site] Deploying to ${vercelHost} — Vercel's own hostname. Serving\n` +
+      `       noindex so this copy cannot compete with ${ASSUMED_SITE_URL},\n` +
+      "       which the canonical tags point at. Attach the production domain\n" +
+      "       in Vercel to make the deployment itself indexable.\n",
   );
 }
 

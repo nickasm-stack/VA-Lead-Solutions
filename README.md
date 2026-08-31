@@ -164,25 +164,38 @@ Verified against the running build:
 a tall crawler-style viewport reveals all 41 elements without any scrolling,
 and the rendered text length is identical either way.
 
-### The domain must be configured before the site can be indexed
+### Domain
 
-`NEXT_PUBLIC_SITE_URL` sets the origin that every canonical tag, Open Graph
-URL and sitemap entry derives from. On Vercel it is picked up automatically
-from `VERCEL_PROJECT_PRODUCTION_URL` once the production domain is attached to
-the project, so attaching the domain is usually all that is needed.
+The canonical domain is **`valeadsolutions.com`**, set as `ASSUMED_SITE_URL`
+in `lib/site.ts`.
 
-Vercel's own `*.vercel.app` hostname is treated as *not* configured. If it
-were indexed, Google would hold a copy of the site on that hostname, which
-then competes with the real domain for the same content once it is attached.
+**This was assumed, not verified against the registrar.** It was inferred from
+the contact email and then confirmed as the working assumption. If the domain
+actually purchased differs, `ASSUMED_SITE_URL` is the single line to change —
+and `brand.email` in `data/copy.ts` almost certainly needs the same edit,
+since it shares the domain and appears on the page in three places.
 
-**There is no fallback to a guessed domain, on purpose.** A canonical tag
-naming the wrong host tells search engines the real page lives elsewhere,
-which can suppress the actual site — worse than publishing no canonical at
-all. With no domain configured the build still succeeds, but it logs a
-warning and serves `noindex` with a disallow-all `robots.txt`, so a deploy
-can never publish a canonical pointing somewhere wrong.
+Resolution order for the canonical origin:
 
-To confirm what the live build decided:
+1. `NEXT_PUBLIC_SITE_URL`, if set — overrides everything.
+2. The production domain attached in Vercel (`VERCEL_PROJECT_PRODUCTION_URL`).
+3. `ASSUMED_SITE_URL`.
+
+Behaviour per deployment, all verified:
+
+| Deployment | robots | Canonical |
+| --- | --- | --- |
+| Production, domain attached | `index, follow` | that domain |
+| Production, no domain yet | `index, follow` | `valeadsolutions.com` |
+| Preview on `*.vercel.app` | `noindex, nofollow` | `valeadsolutions.com` |
+| `NEXT_PUBLIC_SITE_INDEXABLE=false` | `noindex, nofollow` | unchanged |
+
+A `*.vercel.app` deployment is never indexed — Google would otherwise hold a
+second copy of the site on that hostname, competing with the real domain for
+the same content. It still canonicalises to the real domain, which is what
+points search engines at production rather than at the preview.
+
+To confirm what a live build decided:
 
 ```bash
 curl -s https://<domain>/robots.txt
@@ -190,24 +203,10 @@ curl -s https://<domain> | grep -o 'name="robots" content="[^"]*"'
 curl -s https://<domain> | grep -o '<link rel="canonical"[^>]*>'
 ```
 
-`index, follow` plus a canonical on the right host means it is configured.
-`noindex, nofollow` means either no domain reached the build, or it is still
-on `*.vercel.app`. The build log says which:
-
-| Build state | robots | Why |
-| --- | --- | --- |
-| No domain | `noindex, nofollow` | Nothing to write a canonical from |
-| `*.vercel.app` | `noindex, nofollow` | Would compete with the real domain |
-| Real domain | `index, follow` | Canonical points at the right host |
-
-Attaching the production domain in Vercel is enough — `NEXT_PUBLIC_SITE_URL`
-is only needed if you want to override it.
-
-`NEXT_PUBLIC_SITE_INDEXABLE=false` forces `noindex` even when the domain is
-set. Use it on preview deployments so staging never competes with production,
-and consider leaving it on until the bracketed placeholders in `data/copy.ts`
-are replaced — whatever Google indexes is what it shows in results, and
-getting that removed again is slow.
+`NEXT_PUBLIC_SITE_INDEXABLE=false` forces `noindex` everywhere. Consider using
+it until the bracketed placeholders in `data/copy.ts` are replaced — whatever
+Google indexes is what it shows in results, and getting that removed again is
+slow.
 
 ### Structured data will not state a placeholder
 
