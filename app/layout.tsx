@@ -19,7 +19,7 @@ const publicSans = Public_Sans({
 });
 
 export const metadata: Metadata = {
-  title: `${brand.name} — B2B Lead Generation & Call Center Solutions`,
+  title: `${brand.name} — Lead Generation & Call Center Solutions`,
   description:
     "Exclusive real-time and aged leads across mortgage, legal, home services, and business lending — plus call center staffing and dialer solutions.",
 };

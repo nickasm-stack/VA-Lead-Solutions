@@ -25,7 +25,7 @@ export const nav = {
 };
 
 export const hero = {
-  eyebrow: "B2B Lead Generation & Call Center Solutions",
+  eyebrow: "Lead Generation & Call Center Solutions",
   headline: "Qualified leads. Reliable call support.",
   subheadline:
     "VA Lead Solutions provides exclusive real-time and aged leads, along with call center staffing and dialer solutions, for businesses that need consistent, qualified pipeline.",
@@ -91,6 +91,6 @@ export const contact = {
 };
 
 export const footer = {
-  tagline: "B2B lead generation and call center solutions.",
+  tagline: "Lead generation and call center solutions.",
   copyrightName: brand.name,
 };
