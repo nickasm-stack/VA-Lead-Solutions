@@ -218,6 +218,37 @@ structured data that contradicts the page risks a manual action.
   qualified search traffic, and it is where `LocalBusiness` schema and an
   address would then be worth adding.
 
+## Accessibility
+
+Audited with axe-core (WCAG 2.1 A/AA plus best practices) at 1440px and
+390px: **0 violations, 43 passes**. Re-run it after visual changes; the two
+things it caught here were both invisible by eye.
+
+- **Contrast.** Secondary text sat at `text-charcoal/75`, which is 4.39:1 on
+  white and 4.18:1 on mist — just under the 4.5:1 AA threshold. 80% is the
+  floor on both backgrounds, so anything below it was raised. Hierarchy is
+  carried by size and weight rather than by fading text toward the
+  background.
+- **List semantics.** The `Reveal` wrapper rendered a `div`, so `ol` and `dl`
+  contained `div`s instead of `li`/`dt`/`dd`. That is invalid markup and drops
+  the list semantics a screen reader announces ("step 2 of 4"). `Reveal` now
+  takes an `as` prop.
+
+When auditing, force the settled state first — reveals start at `opacity: 0`,
+and sampling mid-transition reports contrast failures that do not exist:
+
+```js
+await page.addStyleTag({ content:
+  '*{transition:none!important} [data-reveal]{opacity:1!important;transform:none!important}' });
+```
+
+## Continuous integration
+
+`.github/workflows/ci.yml` runs lint, typecheck and build on every push and
+pull request, plus a guard for the `next/font` hash desync described under
+Known warnings — it fails the build if a class on `<html>` resolves to no rule
+in the stylesheet, which is how body text silently loses its typeface.
+
 ## Known warnings
 
 - `Failed to find font override values for font 'Newsreader'` during `npm run

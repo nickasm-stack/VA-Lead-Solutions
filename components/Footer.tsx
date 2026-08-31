@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.4fr,1fr,1fr,1fr]">
           <div>
             <span className="font-display text-lg text-ink-950">{brand.name}</span>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-charcoal/70">
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-charcoal/80">
               {footer.tagline}
             </p>
             <div className="mt-5 flex flex-col items-start gap-1.5 text-sm">
@@ -17,7 +17,7 @@ export default function Footer() {
               </a>
               <a
                 href={`mailto:${brand.email}`}
-                className="link-underline text-charcoal/70 hover:text-ink-950"
+                className="link-underline text-charcoal/80 hover:text-ink-950"
               >
                 {brand.email}
               </a>
@@ -26,7 +26,7 @@ export default function Footer() {
 
           {footer.columns.map((column) => (
             <nav key={column.title} aria-label={column.title}>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-charcoal/50">
+              <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-charcoal/80">
                 {column.title}
               </h2>
               <ul className="mt-4 flex flex-col gap-2.5">
@@ -46,7 +46,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 border-t border-line pt-6">
-          <p className="text-xs text-charcoal/50">
+          <p className="text-xs text-charcoal/80">
             &copy; {new Date().getFullYear()} {footer.copyrightName}. All rights reserved.
           </p>
         </div>

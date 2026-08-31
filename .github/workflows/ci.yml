@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Build
+        run: npm run build
+
+      # next/font links a class on <html> to a rule in the stylesheet. A stale
+      # build cache can desync those hashes, which silently drops the body font
+      # back to a system fallback — it looks plausible enough to ship.
+      - name: Fonts resolve
+        run: |
+          html=$(cat .next/server/app/index.html)
+          for class in $(printf '%s' "$html" | grep -o '<html[^>]*class="[^"]*"' | grep -o '__variable_[a-z0-9]*'); do
+            if ! grep -qs "\.$class{" .next/static/css/*.css; then
+              echo "::error::$class is on <html> but defined in no stylesheet — the font will fall back."
+              exit 1
+            fi
+          done
+          echo "all font variable classes resolve"

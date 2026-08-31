@@ -13,12 +13,19 @@ export default function Reveal({
   children,
   delay = 0,
   className,
+  as: Tag = "div",
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
+  /**
+   * Element to render. Inside a list or a description list the wrapper must
+   * be the `li`/`div` the parent expects — a stray `div` in an `ol` is
+   * invalid markup and drops the list semantics screen readers announce.
+   */
+  as?: "div" | "li";
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -49,13 +56,13 @@ export default function Reveal({
   }, []);
 
   return (
-    <div
-      ref={ref}
+    <Tag
+      ref={ref as React.RefObject<HTMLDivElement & HTMLLIElement>}
       data-reveal=""
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
       className={className}
     >
       {children}
-    </div>
+    </Tag>
   );
 }

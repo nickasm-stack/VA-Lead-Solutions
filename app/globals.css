@@ -153,7 +153,7 @@
   .card-lead__title { @apply font-display text-xl text-ink-950; }
   .card-lead__body { @apply mt-2.5 text-sm leading-relaxed text-charcoal/80; }
   .card-lead__list { @apply mt-5 flex flex-col gap-2.5 border-t border-line pt-5; }
-  .card-lead__list li { @apply flex gap-3 text-sm leading-relaxed text-charcoal/75; }
+  .card-lead__list li { @apply flex gap-3 text-sm leading-relaxed text-charcoal/85; }
   .card-lead__dot {
     @apply mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-teal;
     transition: transform var(--dur-card) var(--ease);
@@ -195,7 +195,7 @@
 
   .tile__title { @apply font-display text-lg text-ink-950; }
   .tile__title--dark { @apply text-white; }
-  .tile__body { @apply mt-2 text-sm leading-relaxed text-charcoal/75; }
+  .tile__body { @apply mt-2 text-sm leading-relaxed text-charcoal/85; }
   .tile__body--dark { @apply text-white/65; }
 
   /* ── Process steps ─────────────────────────────────────────────────────── */
@@ -210,12 +210,12 @@
     letter-spacing: 0.08em;
   }
   .step__title { @apply mt-4 font-display text-lg text-ink-950; }
-  .step__body { @apply mt-2 text-sm leading-relaxed text-charcoal/75; }
+  .step__body { @apply mt-2 text-sm leading-relaxed text-charcoal/85; }
 
   /* ── Stats ─────────────────────────────────────────────────────────────── */
   .stat { @apply border-l-2 border-line pl-5; transition: border-color var(--dur-card) var(--ease); }
   .stat:hover { @apply border-teal; }
-  .stat__label { @apply text-xs uppercase tracking-[0.12em] text-charcoal/55; }
+  .stat__label { @apply text-xs uppercase tracking-[0.12em] text-charcoal/80; }
   .stat__value {
     @apply mt-2 font-display text-3xl text-ink-950 md:text-4xl;
     font-variant-numeric: tabular-nums;
@@ -245,7 +245,7 @@
   }
   .feature:hover .feature__icon { @apply bg-teal text-white; transform: scale(1.06); }
   .feature__title { @apply font-display text-lg text-ink-950; }
-  .feature__body { @apply mt-1.5 text-sm leading-relaxed text-charcoal/75; }
+  .feature__body { @apply mt-1.5 text-sm leading-relaxed text-charcoal/85; }
 
   /* ── FAQ accordion ─────────────────────────────────────────────────────── */
   .faq-item { @apply border-b border-line; }
