@@ -1,17 +1,33 @@
 import Container from "@/components/ui/Container";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Reveal from "@/components/Reveal";
+import Icon from "@/components/ui/Icon";
 import { whyUs } from "@/data/copy";
 
 export default function WhyUs() {
   return (
-    <section id="why-us" className="py-20 md:py-24">
+    <section id="why-us" className="bg-mist py-20 md:py-28">
       <Container>
-        <div className="max-w-2xl">
-          <h2 className="font-display text-3xl text-ink-950 md:text-4xl">
-            {whyUs.heading}
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-charcoal/85">
-            {whyUs.body}
-          </p>
+        <SectionHeading
+          eyebrow={whyUs.eyebrow}
+          heading={whyUs.heading}
+          intro={whyUs.intro}
+        />
+
+        <div className="mt-14 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2">
+          {whyUs.points.map((point, i) => (
+            <Reveal key={point.name} delay={i * 70} className="h-full">
+              <div className="feature h-full">
+                <span className="feature__icon">
+                  <Icon name={point.icon} />
+                </span>
+                <div>
+                  <h3 className="feature__title">{point.name}</h3>
+                  <p className="feature__body">{point.description}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </Container>
     </section>

@@ -1,28 +1,31 @@
 import Container from "@/components/ui/Container";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Reveal from "@/components/Reveal";
+import Icon from "@/components/ui/Icon";
 import { callCenter } from "@/data/copy";
 
 export default function CallCenterSolutions() {
   return (
-    <section id="call-center" className="bg-mist py-20 md:py-24">
+    <section id="call-center" className="bg-ink-950 py-20 md:py-28">
       <Container>
-        <div className="max-w-2xl">
-          <h2 className="font-display text-3xl text-ink-950 md:text-4xl">
-            {callCenter.heading}
-          </h2>
-          <p className="mt-4 leading-relaxed text-charcoal/85">{callCenter.intro}</p>
-        </div>
+        <SectionHeading
+          eyebrow={callCenter.eyebrow}
+          heading={callCenter.heading}
+          intro={callCenter.intro}
+          invert
+        />
 
-        <div className="mt-12 divide-y divide-line border-t border-line">
-          {callCenter.items.map((item) => (
-            <div
-              key={item.name}
-              className="grid grid-cols-1 gap-2 py-7 md:grid-cols-[280px,1fr] md:gap-10"
-            >
-              <h3 className="font-display text-xl text-ink-950">{item.name}</h3>
-              <p className="text-sm leading-relaxed text-charcoal/80">
-                {item.description}
-              </p>
-            </div>
+        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
+          {callCenter.items.map((item, i) => (
+            <Reveal key={item.name} delay={i * 80} className="h-full">
+              <article className="tile tile--dark h-full">
+                <span className="tile__icon tile__icon--dark">
+                  <Icon name={item.icon} />
+                </span>
+                <h3 className="tile__title tile__title--dark">{item.name}</h3>
+                <p className="tile__body tile__body--dark">{item.description}</p>
+              </article>
+            </Reveal>
           ))}
         </div>
       </Container>

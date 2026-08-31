@@ -31,6 +31,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${newsreader.variable} ${publicSans.variable}`}>
+      <head>
+        {/* Scroll-reveal elements are hidden by default in the stylesheet, so
+            that they never flash in before animating. This puts them back for
+            anyone browsing without JavaScript, where nothing would ever
+            un-hide them. */}
+        <noscript>
+          <style
+            dangerouslySetInnerHTML={{
+              __html: "[data-reveal]{opacity:1!important;transform:none!important}",
+            }}
+          />
+        </noscript>
+      </head>
       <body>{children}</body>
     </html>
   );

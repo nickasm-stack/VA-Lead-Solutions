@@ -3,6 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Motion. One easing curve and three durations, so every interaction on
+       the page moves with the same character: a quick, decisive settle rather
+       than a bounce. */
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --dur-micro: 180ms; /* links, buttons */
+    --dur-card: 260ms; /* panels and rows */
+    --dur-reveal: 700ms; /* scroll entrances */
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -25,19 +35,309 @@
   }
 }
 
-@layer utilities {
-  .section-pad {
-    @apply px-6 md:px-10 lg:px-16;
+@layer components {
+  /* ── Buttons ───────────────────────────────────────────────────────────
+     Shared press mechanics: lift on hover, settle back down and compress
+     slightly on press, so a click feels physically acknowledged. */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-sm;
+    transition:
+      background-color var(--dur-micro) var(--ease),
+      border-color var(--dur-micro) var(--ease),
+      color var(--dur-micro) var(--ease),
+      box-shadow var(--dur-micro) var(--ease),
+      transform var(--dur-micro) var(--ease);
   }
 
-  .container-max {
-    @apply max-w-6xl mx-auto;
+  .btn:hover { transform: translateY(-2px); }
+
+  .btn:active {
+    transform: translateY(0) scale(0.98);
+    transition-duration: 80ms;
   }
 
-  .text-balance {
-    text-wrap: balance;
+  .btn-primary {
+    @apply bg-teal text-white;
+    box-shadow: 0 1px 2px rgb(9 17 22 / 0.12);
   }
+  .btn-primary:hover {
+    @apply bg-teal-dark;
+    box-shadow: 0 10px 22px -10px rgb(9 17 22 / 0.55);
+  }
+  .btn-primary:active { box-shadow: 0 1px 2px rgb(9 17 22 / 0.2); }
+
+  .btn-invert {
+    @apply bg-white text-ink-950;
+    box-shadow: 0 1px 2px rgb(9 17 22 / 0.15);
+  }
+  .btn-invert:hover { box-shadow: 0 14px 30px -12px rgb(0 0 0 / 0.6); }
+  .btn-invert:active { box-shadow: 0 1px 2px rgb(0 0 0 / 0.3); }
+
+  /* Outlined companion for the hero's secondary action. */
+  .btn-ghost {
+    @apply border border-white/30 text-white;
+  }
+  .btn-ghost:hover {
+    @apply border-white/70 bg-white/10;
+  }
+
+  /* ── Sticky header ─────────────────────────────────────────────────────── */
+  .site-header {
+    @apply sticky top-0 z-40 border-b border-transparent bg-paper/80;
+    backdrop-filter: saturate(1.4) blur(10px);
+    transition:
+      border-color var(--dur-card) var(--ease),
+      box-shadow var(--dur-card) var(--ease),
+      background-color var(--dur-card) var(--ease);
+  }
+  .site-header.is-scrolled {
+    @apply border-line bg-paper/95;
+    box-shadow: 0 8px 26px -20px rgb(9 17 22 / 0.7);
+  }
+
+  /* ── Underline links ───────────────────────────────────────────────────
+     The rule grows from the left rather than fading in, so the motion has a
+     direction that matches reading order. */
+  .link-underline { @apply relative; transition: color var(--dur-micro) var(--ease); }
+  .link-underline::after {
+    content: "";
+    @apply absolute left-0 -bottom-1 h-px w-full origin-left bg-current;
+    transform: scaleX(0);
+    transition: transform var(--dur-micro) var(--ease);
+  }
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after { transform: scaleX(1); }
+  .link-underline:active { opacity: 0.7; }
+
+  /* ── Hero trust strip ──────────────────────────────────────────────────── */
+  .trust {
+    @apply bg-ink-950/40 px-4 py-5 text-center;
+    transition: background-color var(--dur-card) var(--ease);
+  }
+  .trust:hover { @apply bg-ink-950/10; }
+  .trust__value { @apply font-display text-2xl text-white md:text-3xl; }
+  .trust__label {
+    @apply mt-1 text-[11px] uppercase tracking-[0.12em] text-white/55;
+  }
+
+  /* ── Lead cards ────────────────────────────────────────────────────────
+     The teal rule is the section's existing motif; on hover it thickens and
+     the card slides with it, so the accent reads as the thing being pulled. */
+  .card-lead {
+    @apply relative rounded-sm border border-line bg-paper p-7;
+    box-shadow: inset 2px 0 0 0 #3c677f;
+    transition:
+      background-color var(--dur-card) var(--ease),
+      border-color var(--dur-card) var(--ease),
+      box-shadow var(--dur-card) var(--ease),
+      transform var(--dur-card) var(--ease);
+  }
+  .card-lead:hover {
+    @apply border-teal/30;
+    box-shadow: inset 4px 0 0 0 #3c677f, 0 18px 40px -22px rgb(9 17 22 / 0.55);
+    transform: translateY(-4px);
+  }
+  .card-lead:active { transform: translateY(-1px); transition-duration: 90ms; }
+
+  .card-lead__icon {
+    @apply mb-5 inline-flex h-11 w-11 items-center justify-center rounded-sm bg-mist text-teal;
+    transition:
+      background-color var(--dur-card) var(--ease),
+      color var(--dur-card) var(--ease),
+      transform var(--dur-card) var(--ease);
+  }
+  .card-lead:hover .card-lead__icon {
+    @apply bg-teal text-white;
+    transform: scale(1.06) rotate(-3deg);
+  }
+  .card-lead__title { @apply font-display text-xl text-ink-950; }
+  .card-lead__body { @apply mt-2.5 text-sm leading-relaxed text-charcoal/80; }
+  .card-lead__list { @apply mt-5 flex flex-col gap-2.5 border-t border-line pt-5; }
+  .card-lead__list li { @apply flex gap-3 text-sm leading-relaxed text-charcoal/75; }
+  .card-lead__dot {
+    @apply mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-teal;
+    transition: transform var(--dur-card) var(--ease);
+  }
+  .card-lead:hover .card-lead__dot { transform: scale(1.5); }
+
+  /* ── Tiles (industries, call center) ──────────────────────────────────── */
+  .tile {
+    @apply rounded-sm border border-line bg-paper p-6;
+    transition:
+      background-color var(--dur-card) var(--ease),
+      border-color var(--dur-card) var(--ease),
+      box-shadow var(--dur-card) var(--ease),
+      transform var(--dur-card) var(--ease);
+  }
+  .tile:hover {
+    @apply border-teal/35;
+    box-shadow: 0 18px 40px -24px rgb(9 17 22 / 0.6);
+    transform: translateY(-4px);
+  }
+  .tile:active { transform: translateY(-1px); transition-duration: 90ms; }
+
+  .tile--dark { @apply border-white/10 bg-white/[0.04]; }
+  .tile--dark:hover {
+    @apply border-teal/50 bg-white/[0.08];
+    box-shadow: 0 20px 44px -26px rgb(0 0 0 / 0.9);
+  }
+
+  .tile__icon {
+    @apply mb-5 inline-flex h-10 w-10 items-center justify-center rounded-sm bg-mist text-teal;
+    transition:
+      background-color var(--dur-card) var(--ease),
+      color var(--dur-card) var(--ease),
+      transform var(--dur-card) var(--ease);
+  }
+  .tile:hover .tile__icon { @apply bg-teal text-white; transform: scale(1.06) rotate(-3deg); }
+  .tile__icon--dark { @apply bg-white/10 text-teal-light; }
+  .tile:hover .tile__icon--dark { @apply bg-teal text-white; }
+
+  .tile__title { @apply font-display text-lg text-ink-950; }
+  .tile__title--dark { @apply text-white; }
+  .tile__body { @apply mt-2 text-sm leading-relaxed text-charcoal/75; }
+  .tile__body--dark { @apply text-white/65; }
+
+  /* ── Process steps ─────────────────────────────────────────────────────── */
+  .step {
+    @apply flex h-full flex-col bg-paper p-7;
+    transition: background-color var(--dur-card) var(--ease);
+  }
+  .step:hover { @apply bg-mist; }
+  .step__num {
+    @apply font-display text-sm text-teal;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.08em;
+  }
+  .step__title { @apply mt-4 font-display text-lg text-ink-950; }
+  .step__body { @apply mt-2 text-sm leading-relaxed text-charcoal/75; }
+
+  /* ── Stats ─────────────────────────────────────────────────────────────── */
+  .stat { @apply border-l-2 border-line pl-5; transition: border-color var(--dur-card) var(--ease); }
+  .stat:hover { @apply border-teal; }
+  .stat__label { @apply text-xs uppercase tracking-[0.12em] text-charcoal/55; }
+  .stat__value {
+    @apply mt-2 font-display text-3xl text-ink-950 md:text-4xl;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Why-us features ───────────────────────────────────────────────────── */
+  .feature {
+    @apply flex gap-4 rounded-sm border border-transparent p-5;
+    transition:
+      background-color var(--dur-card) var(--ease),
+      border-color var(--dur-card) var(--ease),
+      box-shadow var(--dur-card) var(--ease),
+      transform var(--dur-card) var(--ease);
+  }
+  .feature:hover {
+    @apply border-line bg-paper;
+    box-shadow: 0 16px 36px -24px rgb(9 17 22 / 0.55);
+    transform: translateY(-3px);
+  }
+  .feature:active { transform: translateY(-1px); transition-duration: 90ms; }
+  .feature__icon {
+    @apply inline-flex h-10 w-10 flex-none items-center justify-center rounded-sm bg-paper text-teal;
+    transition:
+      background-color var(--dur-card) var(--ease),
+      color var(--dur-card) var(--ease),
+      transform var(--dur-card) var(--ease);
+  }
+  .feature:hover .feature__icon { @apply bg-teal text-white; transform: scale(1.06); }
+  .feature__title { @apply font-display text-lg text-ink-950; }
+  .feature__body { @apply mt-1.5 text-sm leading-relaxed text-charcoal/75; }
+
+  /* ── FAQ accordion ─────────────────────────────────────────────────────── */
+  .faq-item { @apply border-b border-line; }
+
+  .faq-trigger {
+    @apply flex w-full items-center justify-between gap-6 py-5 text-left;
+    transition: color var(--dur-micro) var(--ease);
+  }
+  .faq-trigger:hover { @apply text-teal; }
+
+  .faq-question {
+    @apply font-display text-lg text-ink-950 md:text-xl;
+    transition: color var(--dur-micro) var(--ease);
+  }
+  .faq-trigger:hover .faq-question { @apply text-teal; }
+
+  /* Plus sign that rotates into a minus. */
+  .faq-icon {
+    @apply relative inline-flex h-8 w-8 flex-none items-center justify-center rounded-full border border-line text-teal;
+    transition:
+      background-color var(--dur-card) var(--ease),
+      border-color var(--dur-card) var(--ease),
+      transform var(--dur-card) var(--ease);
+  }
+  .faq-trigger:hover .faq-icon { @apply border-teal bg-mist; }
+  .faq-trigger[aria-expanded="true"] .faq-icon {
+    @apply border-teal bg-teal text-white;
+    transform: rotate(180deg);
+  }
+  .faq-icon__bar { @apply absolute h-px w-3.5 bg-current; }
+  .faq-icon__bar--v {
+    transition: transform var(--dur-card) var(--ease), opacity var(--dur-card) var(--ease);
+    transform: rotate(90deg);
+  }
+  .faq-trigger[aria-expanded="true"] .faq-icon__bar--v {
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+
+  /* 0fr -> 1fr animates the row height without measuring anything in JS. */
+  .faq-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--dur-card) var(--ease);
+  }
+  .faq-panel[data-open] { grid-template-rows: 1fr; }
+  .faq-panel__inner { overflow: hidden; }
+  .faq-answer {
+    @apply pb-6 pr-12 text-sm leading-relaxed text-charcoal/80;
+    opacity: 0;
+    transition: opacity var(--dur-card) var(--ease);
+  }
+  .faq-panel[data-open] .faq-answer { opacity: 1; transition-delay: 60ms; }
+
+  /* ── Back to top ───────────────────────────────────────────────────────── */
+  .back-to-top {
+    @apply fixed bottom-6 right-6 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full bg-ink-950 text-white;
+    box-shadow: 0 12px 28px -12px rgb(9 17 22 / 0.8);
+    opacity: 0;
+    transform: translateY(12px) scale(0.9);
+    pointer-events: none;
+    transition:
+      opacity var(--dur-card) var(--ease),
+      transform var(--dur-card) var(--ease),
+      background-color var(--dur-micro) var(--ease);
+  }
+  .back-to-top.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+  .back-to-top:hover { @apply bg-teal; transform: translateY(-3px); }
+  .back-to-top:active { transform: translateY(0) scale(0.95); }
 }
+
+@layer utilities {
+  .section-pad { @apply px-6 md:px-10 lg:px-16; }
+  .container-max { @apply max-w-6xl mx-auto; }
+  .text-balance { text-wrap: balance; }
+}
+
+/* ── Scroll reveals ──────────────────────────────────────────────────────
+   Hidden by plain CSS from first paint, with a <noscript> override in the
+   layout that unhides everything when scripting is off. This deliberately
+   does NOT hang off a class set by script: React owns <html>, so a class
+   added there is wiped the moment React re-renders, which silently disables
+   every reveal on the page. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity var(--dur-reveal) var(--ease),
+    transform var(--dur-reveal) var(--ease);
+}
+
+[data-reveal].is-visible { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -46,4 +346,19 @@
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+
+  /* Motion is the effect here, so drop the offset entirely rather than
+     racing a near-zero transition. */
+  [data-reveal] { opacity: 1; transform: none; }
+
+  .btn:hover, .btn:active,
+  .card-lead:hover, .card-lead:active,
+  .tile:hover, .tile:active,
+  .feature:hover, .feature:active,
+  .back-to-top:hover, .back-to-top:active,
+  .card-lead:hover .card-lead__icon,
+  .tile:hover .tile__icon,
+  .feature:hover .feature__icon { transform: none; }
+
+  .back-to-top.is-visible { transform: none; }
 }
