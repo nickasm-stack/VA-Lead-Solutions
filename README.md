@@ -76,6 +76,52 @@ the logo ever changes.
   yet, and per Adam's brief this site isn't trying to convert cold traffic.
   Add a form later only if the site's purpose changes.
 
+## Security
+
+The site is static: four prerendered routes, no forms, no user input, no
+cookies, no analytics, no database. Verified in a browser, it contacts **only
+its own origin** — fonts are self-hosted by `next/font`, so there is no
+third-party JavaScript and nothing to leak a visitor's referrer to.
+
+Set in `next.config.mjs`, verified against the running server:
+
+| Header | Value |
+| --- | --- |
+| `Content-Security-Policy` | `default-src 'self'`, no external script/frame/object |
+| `Strict-Transport-Security` | `max-age=63072000; includeSubDomains` |
+| `X-Frame-Options` | `DENY` (plus `frame-ancestors 'none'`) |
+| `X-Content-Type-Options` | `nosniff` |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` |
+| `Permissions-Policy` | camera/mic/geolocation/payment/usb denied |
+| `X-Powered-By` | removed (`poweredByHeader: false`) |
+
+Two caveats that decide whether the above is actually in force:
+
+- **`headers()` only applies when a Next server or Vercel serves the site.**
+  Behind a static export on S3, Netlify, or Cloudflare Pages the config is
+  ignored and the same headers must be set on the host.
+- **`script-src` needs `'unsafe-inline'`** because Next inlines its hydration
+  payload. A nonce policy requires middleware, which makes every page dynamic.
+  For a page with no user input this is an acceptable trade: it still blocks
+  script from any other origin, which is the attack that matters here.
+
+### Before launch
+
+- **Confirm HTTPS works on the real domain before HSTS reaches browsers.** A
+  two-year `max-age` is not something a visitor can clear. Do not submit to the
+  HSTS preload list until the domain has been stable on HTTPS for a while —
+  removal from that list takes months.
+- **Decide on the image optimizer.** `/_next/image` is reachable when a Next
+  server hosts the site, and answers arbitrary `w`/`q` permutations — each one
+  a CPU-bound resize plus a cache write. External URLs and path traversal are
+  correctly rejected, so the exposure is resource exhaustion, not disclosure.
+  There is exactly one `<Image>` on the site (a 40px logo from a 309KB
+  source), so `images: { unoptimized: true }` with a pre-sized asset removes
+  the endpoint entirely and makes the site statically exportable. Recommended
+  unless the site grows real imagery.
+- **Set up dependency updates.** Enable Dependabot or Renovate on the repo.
+  The remaining `npm audit` advisories are Next 16-only fixes; see below.
+
 ## Known warnings
 
 - `Failed to find font override values for font 'Newsreader'` during `npm run
