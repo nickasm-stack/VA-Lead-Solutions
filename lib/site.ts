@@ -1,14 +1,12 @@
 import { brand } from "@/data/copy";
 
 /**
- * The site's canonical domain.
+ * The site's canonical domain, confirmed. `brand.email` in data/copy.ts is on
+ * the same domain; change both together if it ever moves.
  *
- * Confirmed as an assumption rather than verified against the registrar — if
- * the domain that was actually purchased differs, this is the single line to
- * change (and `brand.email` in data/copy.ts probably needs the same edit,
- * since it shares the domain).
+ * Overridable per environment with NEXT_PUBLIC_SITE_URL.
  */
-const ASSUMED_SITE_URL = "https://valeadsolutions.com";
+const DEFAULT_SITE_URL = "https://valeadsolutions.com";
 
 const explicitUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
@@ -23,14 +21,14 @@ const onVercelHostname = Boolean(vercelHost && /\.vercel\.app$/.test(vercelHost)
 
 /**
  * Canonical origin, no trailing slash. An explicit NEXT_PUBLIC_SITE_URL wins;
- * otherwise a real domain attached in Vercel; otherwise the assumption above.
+ * otherwise a real domain attached in Vercel; otherwise the default above.
  * A preview deployment still canonicalises to the real domain, which is what
  * points search engines at production rather than at the preview.
  */
 export const siteUrl = (
   explicitUrl ||
-  (onVercelHostname ? ASSUMED_SITE_URL : vercelHost && `https://${vercelHost}`) ||
-  ASSUMED_SITE_URL
+  (onVercelHostname ? DEFAULT_SITE_URL : vercelHost && `https://${vercelHost}`) ||
+  DEFAULT_SITE_URL
 ).replace(/\/$/, "");
 
 /**
@@ -46,7 +44,7 @@ export const isIndexable = !indexingDisabled && !onVercelHostname;
 if (onVercelHostname) {
   console.warn(
     `\n[site] Deploying to ${vercelHost} — Vercel's own hostname. Serving\n` +
-      `       noindex so this copy cannot compete with ${ASSUMED_SITE_URL},\n` +
+      `       noindex so this copy cannot compete with ${DEFAULT_SITE_URL},\n` +
       "       which the canonical tags point at. Attach the production domain\n" +
       "       in Vercel to make the deployment itself indexable.\n",
   );

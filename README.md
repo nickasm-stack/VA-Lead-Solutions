@@ -166,20 +166,15 @@ and the rendered text length is identical either way.
 
 ### Domain
 
-The canonical domain is **`valeadsolutions.com`**, set as `ASSUMED_SITE_URL`
-in `lib/site.ts`.
-
-**This was assumed, not verified against the registrar.** It was inferred from
-the contact email and then confirmed as the working assumption. If the domain
-actually purchased differs, `ASSUMED_SITE_URL` is the single line to change —
-and `brand.email` in `data/copy.ts` almost certainly needs the same edit,
-since it shares the domain and appears on the page in three places.
+The canonical domain is **`valeadsolutions.com`** (confirmed), set as
+`DEFAULT_SITE_URL` in `lib/site.ts`. `brand.email` in `data/copy.ts` is on the
+same domain — change both together if it ever moves.
 
 Resolution order for the canonical origin:
 
 1. `NEXT_PUBLIC_SITE_URL`, if set — overrides everything.
 2. The production domain attached in Vercel (`VERCEL_PROJECT_PRODUCTION_URL`).
-3. `ASSUMED_SITE_URL`.
+3. `DEFAULT_SITE_URL`.
 
 Behaviour per deployment, all verified:
 
