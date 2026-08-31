@@ -15,7 +15,6 @@ export const brand = {
   phoneDisplay: "1-800-000-0000", // ⚠️ PLACEHOLDER — swap for the real number
   phoneHref: "tel:+18000000000", // ⚠️ update to match phoneDisplay once real
   email: "Info@valeadsolutions.com",
-  addressLine: "[CITY, STATE — Adam to confirm business address, or omit if none to share]",
 };
 
 export const nav = {
@@ -26,7 +25,6 @@ export const nav = {
     { label: "Industries", href: "#industries" },
     { label: "FAQ", href: "#faq" },
   ],
-  cta: "Get pricing",
 };
 
 export const hero = {
@@ -199,7 +197,6 @@ export const whyUs = {
 };
 
 export const stats = {
-  heading: "By the numbers",
   // ⚠️ Every value here is a placeholder. Do not replace these with estimates
   // or illustrative figures — a marketing site that states a number is making
   // a factual claim about the business. Fill in from Adam's real records, or
@@ -249,7 +246,6 @@ export const contact = {
   heading: "Get pricing",
   body:
     "Pricing depends on lead type, volume, exclusivity, and industry. Call or email and we'll put together a quote.",
-  callLabel: "Call",
   emailLabel: "Email",
 };
 

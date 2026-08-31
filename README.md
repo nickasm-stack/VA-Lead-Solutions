@@ -171,6 +171,10 @@ URL and sitemap entry derives from. On Vercel it is picked up automatically
 from `VERCEL_PROJECT_PRODUCTION_URL` once the production domain is attached to
 the project, so attaching the domain is usually all that is needed.
 
+Vercel's own `*.vercel.app` hostname is treated as *not* configured. If it
+were indexed, Google would hold a copy of the site on that hostname, which
+then competes with the real domain for the same content once it is attached.
+
 **There is no fallback to a guessed domain, on purpose.** A canonical tag
 naming the wrong host tells search engines the real page lives elsewhere,
 which can suppress the actual site — worse than publishing no canonical at
@@ -187,7 +191,17 @@ curl -s https://<domain> | grep -o '<link rel="canonical"[^>]*>'
 ```
 
 `index, follow` plus a canonical on the right host means it is configured.
-`noindex, nofollow` means the domain has not reached the build.
+`noindex, nofollow` means either no domain reached the build, or it is still
+on `*.vercel.app`. The build log says which:
+
+| Build state | robots | Why |
+| --- | --- | --- |
+| No domain | `noindex, nofollow` | Nothing to write a canonical from |
+| `*.vercel.app` | `noindex, nofollow` | Would compete with the real domain |
+| Real domain | `index, follow` | Canonical points at the right host |
+
+Attaching the production domain in Vercel is enough — `NEXT_PUBLIC_SITE_URL`
+is only needed if you want to override it.
 
 `NEXT_PUBLIC_SITE_INDEXABLE=false` forces `noindex` even when the domain is
 set. Use it on preview deployments so staging never competes with production,

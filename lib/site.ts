@@ -24,8 +24,18 @@ const vercelProductionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
 const resolvedUrl =
   explicitUrl || (vercelProductionUrl ? `https://${vercelProductionUrl}` : undefined);
 
-/** False when the domain is unknown, which forces noindex. */
-export const siteUrlIsConfigured = Boolean(resolvedUrl);
+/**
+ * Vercel's own preview/production hostname is not the site's identity. If it
+ * were indexed, Google would hold a *.vercel.app copy of every page, which
+ * then competes with the real domain for the same content once it is
+ * attached. Treated as "not configured" so it serves noindex.
+ */
+const isVercelHostname = /\.vercel\.app$/.test(
+  resolvedUrl ? new URL(resolvedUrl).hostname : "",
+);
+
+/** False when the domain is unknown or is Vercel's own — both force noindex. */
+export const siteUrlIsConfigured = Boolean(resolvedUrl) && !isVercelHostname;
 
 /**
  * Falls back to localhost rather than a plausible-looking domain, so an
@@ -46,9 +56,15 @@ if (!siteUrlIsConfigured) {
   // Surfaces in the build log rather than failing the build, so a first
   // deploy still works — it just will not be indexed.
   console.warn(
-    "\n[site] No domain configured: set NEXT_PUBLIC_SITE_URL (or attach the\n" +
-      "       production domain in Vercel). Building with noindex and\n" +
-      "       localhost URLs so nothing wrong gets published.\n",
+    isVercelHostname
+      ? `\n[site] Building on ${resolvedUrl} — Vercel's own hostname, not the\n` +
+        "       site's real domain. Serving noindex so this copy cannot be\n" +
+        "       indexed and compete with the real domain later.\n" +
+        "       Attach the production domain in Vercel, or set\n" +
+        "       NEXT_PUBLIC_SITE_URL, and the site becomes indexable.\n"
+      : "\n[site] No domain configured: set NEXT_PUBLIC_SITE_URL (or attach the\n" +
+        "       production domain in Vercel). Building with noindex and\n" +
+        "       localhost URLs so nothing wrong gets published.\n",
   );
 }
 

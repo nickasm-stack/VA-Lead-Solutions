@@ -320,7 +320,6 @@
 @layer utilities {
   .section-pad { @apply px-6 md:px-10 lg:px-16; }
   .container-max { @apply max-w-6xl mx-auto; }
-  .text-balance { text-wrap: balance; }
 }
 
 /* ── Scroll reveals ──────────────────────────────────────────────────────
