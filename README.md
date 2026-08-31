@@ -164,21 +164,36 @@ Verified against the running build:
 a tall crawler-style viewport reveals all 41 elements without any scrolling,
 and the rendered text length is identical either way.
 
-### Two things to set before launch
+### The domain must be configured before the site can be indexed
 
-**1. `NEXT_PUBLIC_SITE_URL`.** Everything above derives from it, and it
-defaults to `https://valeadsolutions.com`. If the real domain differs, every
-canonical tag, Open Graph URL and sitemap entry points at the wrong host —
-worse than having none. Set it in the Vercel project's environment variables.
+`NEXT_PUBLIC_SITE_URL` sets the origin that every canonical tag, Open Graph
+URL and sitemap entry derives from. On Vercel it is picked up automatically
+from `VERCEL_PROJECT_PRODUCTION_URL` once the production domain is attached to
+the project, so attaching the domain is usually all that is needed.
 
-**2. `NEXT_PUBLIC_SITE_INDEXABLE`.** Defaults to indexable. Set it to `false`
-to serve `noindex` plus a disallow-all `robots.txt`.
+**There is no fallback to a guessed domain, on purpose.** A canonical tag
+naming the wrong host tells search engines the real page lives elsewhere,
+which can suppress the actual site — worse than publishing no canonical at
+all. With no domain configured the build still succeeds, but it logs a
+warning and serves `noindex` with a disallow-all `robots.txt`, so a deploy
+can never publish a canonical pointing somewhere wrong.
 
-Consider holding indexing until the bracketed placeholders in `data/copy.ts`
-are replaced. Whatever Google indexes is what it shows in results, so
-launching as-is risks "[Adam: confirm delivery method...]" appearing as your
-search snippet, and getting that removed again is slow. Use it for preview
-deployments regardless, so staging never competes with production.
+To confirm what the live build decided:
+
+```bash
+curl -s https://<domain>/robots.txt
+curl -s https://<domain> | grep -o 'name="robots" content="[^"]*"'
+curl -s https://<domain> | grep -o '<link rel="canonical"[^>]*>'
+```
+
+`index, follow` plus a canonical on the right host means it is configured.
+`noindex, nofollow` means the domain has not reached the build.
+
+`NEXT_PUBLIC_SITE_INDEXABLE=false` forces `noindex` even when the domain is
+set. Use it on preview deployments so staging never competes with production,
+and consider leaving it on until the bracketed placeholders in `data/copy.ts`
+are replaced — whatever Google indexes is what it shows in results, and
+getting that removed again is slow.
 
 ### Structured data will not state a placeholder
 
