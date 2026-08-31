@@ -203,6 +203,33 @@ it until the bracketed placeholders in `data/copy.ts` are replaced — whatever
 Google indexes is what it shows in results, and getting that removed again is
 slow.
 
+### Showing the site before launch
+
+Two ways to put it in front of someone without it reaching search engines.
+
+**A Vercel preview deployment** is the accurate one — the real site, real
+behaviour, on a `*.vercel.app` URL. Push a branch (or open a PR) and Vercel
+builds it. Two independent things keep it out of the index: Vercel sends
+`X-Robots-Tag: noindex` on preview deployments itself, and this repo detects
+the `*.vercel.app` hostname and serves `noindex` plus a disallow-all
+`robots.txt` (see the table above). It still canonicalises to
+`valeadsolutions.com`, so any link equity points at production.
+
+**Production with indexing held off** is the other: deploy to the real domain
+with `NEXT_PUBLIC_SITE_INDEXABLE=false`. The site is live at its proper
+address and reads exactly as it will on launch day, but serves `noindex` and
+a disallow-all `robots.txt`. Removing that variable at launch is the only
+change needed.
+
+`noindex` keeps a page out of search results; it does not restrict access.
+Anyone with the URL can open it. For a client review that is usually the
+point — but if the link must not be opened by anyone else, use Vercel's
+Deployment Protection, which requires a login rather than relying on the URL
+being unguessable.
+
+One caveat either way: `tel:` and `mailto:` links behave normally on a real
+deployment, but not in an embedded preview pane.
+
 ### Structured data will not state a placeholder
 
 `components/StructuredData.tsx` omits any field still carrying a bracketed
