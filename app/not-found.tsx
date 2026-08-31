@@ -5,7 +5,7 @@ import Container from "@/components/ui/Container";
 import { brand, nav } from "@/data/copy";
 
 export const metadata: Metadata = {
-  title: `Page not found — ${brand.name}`,
+  title: `Page not found | ${brand.name}`,
   /**
    * Next injects its own noindex on not-found pages, and the root layout's
    * robots value is inherited alongside it. Without this override an
@@ -31,9 +31,9 @@ export default function NotFound() {
               That page isn&rsquo;t here.
             </h1>
             <p className="mx-auto mt-6 max-w-md leading-relaxed text-white/75">
-              The link may be out of date. Everything on this site lives on one
-              page — pick a section below, or call and we&rsquo;ll point you the
-              right way.
+              The link may be out of date. Everything on this site lives on
+              one page, so pick a section below, or call and we&rsquo;ll point
+              you the right way.
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">

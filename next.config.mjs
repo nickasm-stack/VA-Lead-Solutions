@@ -2,14 +2,14 @@
 
 /**
  * The site is static, has no forms, no user input, and no third-party
- * requests — it contacts only its own origin. These headers are therefore
+ * requests; it contacts only its own origin. These headers are therefore
  * defence in depth rather than mitigations for a known hole: they mainly
  * stop someone else's injected content from doing anything useful, and stop
  * the page being framed.
  *
  * NOTE: headers() only takes effect when a Next server (or Vercel) serves the
  * site. Behind a static export on S3/Netlify/Cloudflare these must be set on
- * the host instead — see README, "Security".
+ * the host instead. See README, "Security".
  */
 const securityHeaders = [
   {
@@ -33,7 +33,7 @@ const securityHeaders = [
     ].join("; "),
   },
   // Two years, and only meaningful once HTTPS is confirmed working on the
-  // real domain. Preloading is deliberately not claimed here — see README.
+  // real domain. Preloading is deliberately not claimed here; see README.
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
   { key: "X-Frame-Options", value: "DENY" },
   { key: "X-Content-Type-Options", value: "nosniff" },
@@ -47,7 +47,7 @@ const nextConfig = {
   reactStrictMode: true,
   // The only image on the site is a 40px logo, pre-sized to 160px in
   // public/va-logo-web.png. Leaving the optimizer on would expose
-  // /_next/image, which answers arbitrary w/q permutations — each a
+  // /_next/image, which answers arbitrary w/q permutations, each of them a
   // CPU-bound resize, and on Vercel a billed transformation. Off, it is not
   // reachable at all, and the site stays statically exportable.
   images: { unoptimized: true },

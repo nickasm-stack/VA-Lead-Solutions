@@ -13,7 +13,7 @@ export default function Process() {
           intro={process.intro}
         />
 
-        {/* Numbered because these are genuinely sequential — the order is
+        {/* Numbered because these are genuinely sequential: the order is
             information, not decoration. */}
         <ol className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-sm bg-line sm:grid-cols-2 lg:grid-cols-4">
           {process.steps.map((step, i) => (

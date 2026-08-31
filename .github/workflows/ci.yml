@@ -29,13 +29,13 @@ jobs:
 
       # next/font links a class on <html> to a rule in the stylesheet. A stale
       # build cache can desync those hashes, which silently drops the body font
-      # back to a system fallback — it looks plausible enough to ship.
+      # back to a system fallback, which looks plausible enough to ship.
       - name: Fonts resolve
         run: |
           html=$(cat .next/server/app/index.html)
           for class in $(printf '%s' "$html" | grep -o '<html[^>]*class="[^"]*"' | grep -o '__variable_[a-z0-9]*'); do
             if ! grep -qs "\.$class{" .next/static/css/*.css; then
-              echo "::error::$class is on <html> but defined in no stylesheet — the font will fall back."
+              echo "::error::$class is on <html> but defined in no stylesheet; the font will fall back."
               exit 1
             fi
           done

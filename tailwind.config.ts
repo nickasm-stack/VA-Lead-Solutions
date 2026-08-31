@@ -11,10 +11,10 @@ const config: Config = {
       colors: {
         // Sampled directly from the VA Lead Solutions logo gradient
         ink: {
-          950: "#091116", // top of logo gradient — near-black navy
+          950: "#091116", // top of logo gradient: near-black navy
           800: "#172A37", // upper-mid gradient
           700: "#244254", // mid gradient
-          600: "#3C677F", // bottom of logo gradient — teal-blue accent
+          600: "#3C677F", // bottom of logo gradient: teal-blue accent
         },
         teal: {
           DEFAULT: "#3C677F",

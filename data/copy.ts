@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────
-// SITE COPY — everything editable lives here.
+// SITE COPY: everything editable lives here.
 //
 // Anything wrapped like [THIS] is a placeholder that needs a real answer
 // from Adam before launch. Search this file for "[" to find every one of
@@ -12,7 +12,7 @@
 
 export const brand = {
   name: "VA Lead Solutions",
-  phoneDisplay: "1-800-000-0000", // ⚠️ PLACEHOLDER — swap for the real number
+  phoneDisplay: "1-800-000-0000", // ⚠️ PLACEHOLDER: swap for the real number
   phoneHref: "tel:+18000000000", // ⚠️ update to match phoneDisplay once real
   email: "Info@valeadsolutions.com",
 };
@@ -35,7 +35,7 @@ export const hero = {
   cta: "Call for pricing",
   ctaSecondary: "See what we deliver",
   // Shown as a strip under the hero. These are claims, so they stay as
-  // placeholders — see stats.note below.
+  // placeholders; see stats.note below.
   trust: [
     { value: "[X]", label: "Leads delivered" },
     { value: "[X]", label: "Active clients" },
@@ -48,7 +48,7 @@ export const leads = {
   heading: "Leads",
   eyebrow: "What we sell",
   intro:
-    "Two ways to buy, four industries we serve. Pricing depends on volume, exclusivity, and industry — call for a quote.",
+    "Two ways to buy, four industries we serve. Pricing depends on volume, exclusivity, and industry. Call for a quote.",
   types: [
     {
       name: "Exclusive Real-Time Leads",
@@ -56,7 +56,7 @@ export const leads = {
       description:
         "Delivered the moment they're generated, sold to you and no one else.",
       points: [
-        '[Adam: confirm delivery method — e.g. "via API, CRM integration, or live transfer"]',
+        '[Adam: confirm delivery method, e.g. "via API, CRM integration, or live transfer"]',
         '[Adam: confirm typical delivery speed, e.g. "within 60 seconds of generation"]',
         "Sold once, never resold",
       ],
@@ -84,22 +84,22 @@ export const industries = {
     {
       name: "Mortgage",
       icon: "home" as const,
-      description: "[Adam: confirm mortgage lead criteria — purchase, refinance, credit band, LTV?]",
+      description: "[Adam: confirm mortgage lead criteria: purchase, refinance, credit band, LTV?]",
     },
     {
       name: "Legal",
       icon: "scale" as const,
-      description: "[Adam: confirm legal case types — mass tort, personal injury, disability?]",
+      description: "[Adam: confirm legal case types: mass tort, personal injury, disability?]",
     },
     {
       name: "Home Services",
       icon: "wrench" as const,
-      description: "[Adam: confirm home services trades — roofing, solar, HVAC, windows?]",
+      description: "[Adam: confirm home services trades: roofing, solar, HVAC, windows?]",
     },
     {
       name: "Business Lending",
       icon: "briefcase" as const,
-      description: "[Adam: confirm business lending criteria — revenue floor, time in business?]",
+      description: "[Adam: confirm business lending criteria: revenue floor, time in business?]",
     },
   ],
 };
@@ -114,19 +114,19 @@ export const callCenter = {
       name: "Onshore & Offshore Agents",
       icon: "headset" as const,
       description:
-        'Trained call center agents available [Adam: confirm hours/timezone coverage, e.g. "across all U.S. time zones, with 24/7 coverage available"]. [Adam: confirm agent locations — which onshore and offshore regions?] [Adam: confirm minimum seat/agent commitment, if any].',
+        'Trained call center agents available [Adam: confirm hours/timezone coverage, e.g. "across all U.S. time zones, with 24/7 coverage available"]. [Adam: confirm agent locations: which onshore and offshore regions?] [Adam: confirm minimum seat/agent commitment, if any].',
     },
     {
       name: "AI Agent Alternatives",
       icon: "spark" as const,
       description:
-        '[Adam: what specifically makes this a "better alternative" than typical AI agents? e.g. higher connect rate, human escalation path, custom scripting, faster response time — needs a real, specific claim, not a generic one].',
+        '[Adam: what specifically makes this a "better alternative" than typical AI agents? e.g. higher connect rate, human escalation path, custom scripting, faster response time; it needs a real, specific claim, not a generic one].',
     },
     {
       name: "Dialer Solutions",
       icon: "phone" as const,
       description:
-        "[Adam: confirm dialer type/platform — e.g. predictive dialer, power dialer, specific software name] [Adam: confirm any compliance features worth naming, e.g. TCPA-compliant, DNC scrubbing].",
+        "[Adam: confirm dialer type/platform, e.g. predictive dialer, power dialer, specific software name] [Adam: confirm any compliance features worth naming, e.g. TCPA-compliant, DNC scrubbing].",
     },
   ],
 };
@@ -146,7 +146,7 @@ export const process = {
     {
       name: "We build the campaign",
       description:
-        "[Adam: confirm what happens here — sourcing, script development, compliance review, test batch?]",
+        "[Adam: confirm what happens here: sourcing, script development, compliance review, test batch?]",
     },
     {
       name: "Leads and calls start",
@@ -156,7 +156,7 @@ export const process = {
     {
       name: "We adjust on your feedback",
       description:
-        "[Adam: confirm how performance is reviewed and how filters get tuned — weekly calls, dashboard, replacement policy for bad leads?]",
+        "[Adam: confirm how performance is reviewed and how filters get tuned: weekly calls, dashboard, replacement policy for bad leads?]",
     },
   ],
 };
@@ -167,7 +167,7 @@ export const whyUs = {
   // This section most needs Adam's real input. Each card below is a claim,
   // so each stays bracketed until he confirms it.
   intro:
-    "[Adam: fill in 2–3 real, specific details — e.g. \"Founded in [YEAR]\", \"[X] leads delivered to date\", \"[X] active clients\", or what makes these leads or agents different from competitors. Real, checkable specifics only — no invented stats.]",
+    "[Adam: fill in 2–3 real, specific details, e.g. \"Founded in [YEAR]\", \"[X] leads delivered to date\", \"[X] active clients\", or what makes these leads or agents different from competitors. Real, checkable specifics only; no invented stats.]",
   points: [
     {
       name: "Exclusive means exclusive",
@@ -185,7 +185,7 @@ export const whyUs = {
       name: "Compliance",
       icon: "shield" as const,
       description:
-        "[Adam: confirm which apply — TCPA compliance, DNC scrubbing, TrustedForm/Jornaya certificates, consent capture].",
+        "[Adam: confirm which apply: TCPA compliance, DNC scrubbing, TrustedForm/Jornaya certificates, consent capture].",
     },
     {
       name: "Priced to your volume",
@@ -198,7 +198,7 @@ export const whyUs = {
 
 export const stats = {
   // ⚠️ Every value here is a placeholder. Do not replace these with estimates
-  // or illustrative figures — a marketing site that states a number is making
+  // or illustrative figures. A marketing site that states a number is making
   // a factual claim about the business. Fill in from Adam's real records, or
   // delete this section from app/page.tsx.
   note: "[Adam: these four numbers need to come from real records. If the numbers aren't ready, this whole section should come off the page rather than ship with estimates.]",
@@ -220,11 +220,11 @@ export const faq = {
     },
     {
       q: "How are exclusive leads delivered?",
-      a: '[Adam: confirm delivery method and speed — e.g. "posted to your CRM via API within 60 seconds of generation, or delivered as a live transfer"].',
+      a: '[Adam: confirm delivery method and speed, e.g. "posted to your CRM via API within 60 seconds of generation, or delivered as a live transfer"].',
     },
     {
       q: "What happens if a lead is bad?",
-      a: "[Adam: confirm the replacement or credit policy, and the window for reporting a bad lead. This is the single most common question buyers ask — it needs a real answer].",
+      a: "[Adam: confirm the replacement or credit policy, and the window for reporting a bad lead. This is the single most common question buyers ask; it needs a real answer].",
     },
     {
       q: "Is there a minimum order or contract?",
@@ -232,7 +232,7 @@ export const faq = {
     },
     {
       q: "Are the leads TCPA compliant?",
-      a: "[Adam: confirm compliance posture — consent capture, TrustedForm/Jornaya certificates, DNC scrubbing. Answer precisely; this one carries legal weight].",
+      a: "[Adam: confirm compliance posture: consent capture, TrustedForm/Jornaya certificates, DNC scrubbing. Answer precisely; this one carries legal weight].",
     },
     {
       q: "Can I buy agents without buying leads?",

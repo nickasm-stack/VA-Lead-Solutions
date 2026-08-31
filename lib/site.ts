@@ -13,7 +13,7 @@ const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
 
 /**
  * A *.vercel.app hostname is the deployment's address, not the site's
- * identity, so it is never used as the canonical origin and never indexed —
+ * identity, so it is never used as the canonical origin and never indexed.
  * otherwise Google ends up holding a second copy of the site there, competing
  * with the real domain for the same content.
  */
@@ -33,7 +33,7 @@ export const siteUrl = (
 
 /**
  * Set NEXT_PUBLIC_SITE_INDEXABLE=false to serve noindex and a disallow-all
- * robots.txt — for a staging deployment, or to hold indexing until the
+ * robots.txt, for a staging deployment or to hold indexing until the
  * bracketed placeholders in data/copy.ts are replaced with real copy.
  * Whatever Google indexes is what it shows in results, placeholders included,
  * and removing them again is slow.
@@ -43,7 +43,7 @@ export const isIndexable = !indexingDisabled && !onVercelHostname;
 
 if (onVercelHostname) {
   console.warn(
-    `\n[site] Deploying to ${vercelHost} — Vercel's own hostname. Serving\n` +
+    `\n[site] Deploying to ${vercelHost}, which is Vercel's own hostname.\n` +
       `       noindex so this copy cannot compete with ${DEFAULT_SITE_URL},\n` +
       "       which the canonical tags point at. Attach the production domain\n" +
       "       in Vercel to make the deployment itself indexable.\n",

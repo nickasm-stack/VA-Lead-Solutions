@@ -20,9 +20,9 @@ const publicSans = Public_Sans({
   display: "swap",
 });
 
-const title = `${brand.name} — Lead Generation & Call Center Solutions`;
+const title = `${brand.name} | Lead Generation & Call Center Solutions`;
 const description =
-  "Exclusive real-time and aged leads across mortgage, legal, home services, and business lending — plus call center staffing and dialer solutions.";
+  "Exclusive real-time and aged leads across mortgage, legal, home services, and business lending, plus call center staffing and dialer solutions.";
 
 export const metadata: Metadata = {
   // Required for canonical and Open Graph URLs to resolve to absolute ones.
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     "business lending leads",
   ],
   alternates: { canonical: "/" },
-  // Flipped by NEXT_PUBLIC_SITE_INDEXABLE — see lib/site.ts.
+  // Flipped by NEXT_PUBLIC_SITE_INDEXABLE; see lib/site.ts.
   robots: isIndexable
     ? {
         index: true,
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: `${brand.name} — ${hero.headline}`,
+        alt: `${brand.name}: ${hero.headline}`,
       },
     ],
   },

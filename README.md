@@ -1,4 +1,4 @@
-# VA Lead Solutions — Site
+# VA Lead Solutions: Site
 
 A single-page, informational Next.js site. Its only job: look credible when
 someone looks the company up mid-call. No marketing funnel, no lead-capture
@@ -22,27 +22,27 @@ npm run build  # type-checks and produces the static build
 
 ## Everything still needed from Adam
 
-Open **`data/copy.ts`** and search for `[` — every bracketed placeholder is
+Open **`data/copy.ts`** and search for `[`. Every bracketed placeholder is
 something to confirm with Adam before this launches:
 
-- **Real phone number** (currently `1-800-000-0000` throughout — one field
+- **Real phone number** (currently `1-800-000-0000` throughout, though one field
   to update: `brand.phoneDisplay` / `brand.phoneHref`).
 - **Business address**, if he wants one listed (optional).
 - **Lead delivery specifics**: how exclusive real-time leads are delivered
   and how fast; the age range and vetting process for aged leads.
 - **Call center specifics**: onshore/offshore locations, hours/timezone
   coverage, any minimum commitments.
-- **What makes the "AI Agent Alternative" actually better** — needs one
+- **What makes the "AI Agent Alternative" actually better**, which needs one
   real, specific claim (connect rate, escalation path, etc.), not generic
   marketing language.
 - **Dialer platform/type**, and any compliance features worth naming
   (TCPA compliance, DNC scrubbing).
-- **The "Why VA Lead Solutions" paragraph** — 2–3 real, checkable specifics:
+- **The "Why VA Lead Solutions" paragraph**: 2–3 real, checkable specifics:
   years in business, volume of leads delivered, number of active clients,
-  certifications. No invented stats — leave it as the placeholder until
+  certifications. No invented stats; leave it as the placeholder until
   Adam gives real numbers.
 
-Nothing else in the codebase needs to change once these are filled in —
+Nothing else in the codebase needs to change once these are filled in;
 it's all centralized in that one file.
 
 ## Structure
@@ -51,11 +51,11 @@ it's all centralized in that one file.
 app/            Root layout, page, global styles
 app/icon.png    Favicon + apple-icon.png, derived from the logo's VA mark
 components/     Header, Hero, Leads, CallCenterSolutions, WhyUs, Contact, Footer
-data/copy.ts    All editable copy — start here
+data/copy.ts    All editable copy, start here
 public/         va-logo.png (the provided logo)
 ```
 
-The two icons in `app/` are the logo cropped to just the gradient "VA" block —
+The two icons in `app/` are the logo cropped to just the gradient "VA" block.
 the "LEAD SOLUTIONS" wordmark is illegible at 16–32px, so it's dropped and the
 gradient is extended in its place. Regenerate them from `public/va-logo.png` if
 the logo ever changes.
@@ -70,9 +70,9 @@ the logo ever changes.
   like one continuous piece rather than a logo dropped onto an unrelated
   template.
 - **Type**: Newsreader (serif, echoes the logo's classical "VA" mark) for
-  headlines, Public Sans for body — deliberately different faces from any
+  headlines, Public Sans for body, deliberately different faces from any
   other project so this doesn't read as a reskinned template.
-- No lead-capture form, no testimonials, no stats — none of that exists
+- No lead-capture form, no testimonials, no stats. None of that exists
   yet, and per Adam's brief this site isn't trying to convert cold traffic.
   Add a form later only if the site's purpose changes.
 
@@ -80,7 +80,7 @@ the logo ever changes.
 
 The site is static: four prerendered routes, no forms, no user input, no
 cookies, no analytics, no database. Verified in a browser, it contacts **only
-its own origin** — fonts are self-hosted by `next/font`, so there is no
+its own origin**. Fonts are self-hosted by `next/font`, so there is no
 third-party JavaScript and nothing to leak a visitor's referrer to.
 
 Set in `next.config.mjs`, verified against the running server:
@@ -109,7 +109,7 @@ Two caveats that decide whether the above is actually in force:
 
 - **Confirm HTTPS works on the real domain before HSTS reaches browsers.** A
   two-year `max-age` is not something a visitor can clear. Do not submit to the
-  HSTS preload list until the domain has been stable on HTTPS for a while —
+  HSTS preload list until the domain has been stable on HTTPS for a while;
   removal from that list takes months.
 - **Set up dependency updates.** Enable Dependabot or Renovate on the repo.
   The remaining `npm audit` advisories are Next 16-only fixes; see below.
@@ -119,7 +119,7 @@ Two caveats that decide whether the above is actually in force:
 ### Image optimizer: off, deliberately
 
 `images: { unoptimized: true }`. `/_next/image` used to answer arbitrary
-`w`/`q` permutations, each one a CPU-bound resize and a cache write — and on
+`w`/`q` permutations, each one a CPU-bound resize and a cache write, and on
 Vercel a *billed* transformation, which makes it a cost-abuse vector as well
 as a denial-of-service one. External URLs and path traversal were correctly
 rejected, so the exposure was resource exhaustion, not disclosure.
@@ -139,7 +139,7 @@ close to zero. A form changes that category, and these stop being optional:
 
 - Spam and abuse handling, and rate limiting on the endpoint.
 - A privacy policy, plus a lawful basis for storing the enquiry.
-- Consent capture appropriate to the industry — for mortgage and legal
+- Consent capture appropriate to the industry. For mortgage and legal
   enquiries this is TCPA territory, and the consent record matters as much
   as the lead.
 - Encrypted transport and storage, and a decision about retention. Consumer
@@ -156,7 +156,7 @@ Verified against the running build:
 - Canonical URL, Open Graph and Twitter card tags, and a 1200x630 share image
   at `public/opengraph-image.png`.
 - JSON-LD for `Organization` and `WebSite`.
-- All copy is server-rendered — the page's full text is in the HTML source,
+- All copy is server-rendered, so the page's full text is in the HTML source and
   so it does not depend on JavaScript to be read.
 
 **The scroll reveals do not hide content from crawlers.** They start at
@@ -168,11 +168,11 @@ and the rendered text length is identical either way.
 
 The canonical domain is **`valeadsolutions.com`** (confirmed), set as
 `DEFAULT_SITE_URL` in `lib/site.ts`. `brand.email` in `data/copy.ts` is on the
-same domain — change both together if it ever moves.
+same domain, so change both together if it ever moves.
 
 Resolution order for the canonical origin:
 
-1. `NEXT_PUBLIC_SITE_URL`, if set — overrides everything.
+1. `NEXT_PUBLIC_SITE_URL`, if set. Overrides everything.
 2. The production domain attached in Vercel (`VERCEL_PROJECT_PRODUCTION_URL`).
 3. `DEFAULT_SITE_URL`.
 
@@ -185,7 +185,7 @@ Behaviour per deployment, all verified:
 | Preview on `*.vercel.app` | `noindex, nofollow` | `valeadsolutions.com` |
 | `NEXT_PUBLIC_SITE_INDEXABLE=false` | `noindex, nofollow` | unchanged |
 
-A `*.vercel.app` deployment is never indexed — Google would otherwise hold a
+A `*.vercel.app` deployment is never indexed, because Google would otherwise hold a
 second copy of the site on that hostname, competing with the real domain for
 the same content. It still canonicalises to the real domain, which is what
 points search engines at production rather than at the preview.
@@ -199,7 +199,7 @@ curl -s https://<domain> | grep -o '<link rel="canonical"[^>]*>'
 ```
 
 `NEXT_PUBLIC_SITE_INDEXABLE=false` forces `noindex` everywhere. Consider using
-it until the bracketed placeholders in `data/copy.ts` are replaced — whatever
+it until the bracketed placeholders in `data/copy.ts` are replaced. Whatever
 Google indexes is what it shows in results, and getting that removed again is
 slow.
 
@@ -207,7 +207,7 @@ slow.
 
 Two ways to put it in front of someone without it reaching search engines.
 
-**A Vercel preview deployment** is the accurate one — the real site, real
+**A Vercel preview deployment** is the accurate one: the real site, real
 behaviour, on a `*.vercel.app` URL.
 
 First-time setup:
@@ -217,20 +217,20 @@ First-time setup:
    defaults (`npm ci`, `npm run build`, `.next`) are what this repo expects,
    and a clean `npm ci && npm run build` from a fresh checkout is verified to
    work. `engines.node` in package.json pins the runtime.
-3. Set **no environment variables** — see below.
+3. Set **no environment variables**; see below.
 4. Deploy. Every later push to any branch builds its own preview URL; pushes
    to the default branch go to production.
 
 **No environment variables are needed for a preview.** `NEXT_PUBLIC_SITE_URL`
 already defaults to the canonical domain, and previews are kept out of the
-index automatically — twice over. Vercel sends `X-Robots-Tag: noindex` on
+index automatically, twice over. Vercel sends `X-Robots-Tag: noindex` on
 preview deployments itself, and this repo detects the `*.vercel.app` hostname
 and serves `noindex` plus a disallow-all `robots.txt` (see the table above).
 The preview still canonicalises to `valeadsolutions.com`, so nothing points
 search engines at it.
 
 Attaching `valeadsolutions.com` to the project later turns production
-indexable on its own — that is the only difference between the two, and it
+indexable on its own. That is the only difference between the two, and it
 needs no code change.
 
 **Production with indexing held off** is the other: deploy to the real domain
@@ -241,7 +241,7 @@ change needed.
 
 `noindex` keeps a page out of search results; it does not restrict access.
 Anyone with the URL can open it. For a client review that is usually the
-point — but if the link must not be opened by anyone else, use Vercel's
+point, but if the link must not be opened by anyone else use Vercel's
 Deployment Protection, which requires a login rather than relying on the URL
 being unguessable.
 
@@ -253,7 +253,7 @@ deployment, but not in an embedded preview pane.
 `components/StructuredData.tsx` omits any field still carrying a bracketed
 placeholder. Right now that means the phone number is absent (it is still the
 `000-0000` dummy) and no `FAQPage` is emitted at all, because every answer is
-a placeholder. Both appear automatically once the copy is real — nothing to
+a placeholder. Both appear automatically once the copy is real, with nothing to
 remember.
 
 This matters more than it looks: a `FAQPage` is eligible for rich results, so
@@ -264,7 +264,7 @@ structured data that contradicts the page risks a manual action.
 
 - Verify the domain in Google Search Console and Bing Webmaster Tools, and
   submit the sitemap.
-- Confirm one host answers — `www` and apex should not both serve; redirect
+- Confirm one host answers: `www` and apex should not both serve, so redirect
   one to the other so the canonical is unambiguous.
 - Add a Google Business Profile if the business has a service address. For a
   regional lead-gen firm that is usually the largest single source of
@@ -278,7 +278,7 @@ Audited with axe-core (WCAG 2.1 A/AA plus best practices) at 1440px and
 things it caught here were both invisible by eye.
 
 - **Contrast.** Secondary text sat at `text-charcoal/75`, which is 4.39:1 on
-  white and 4.18:1 on mist — just under the 4.5:1 AA threshold. 80% is the
+  white and 4.18:1 on mist, just under the 4.5:1 AA threshold. 80% is the
   floor on both backgrounds, so anything below it was raised. Hierarchy is
   carried by size and weight rather than by fading text toward the
   background.
@@ -287,7 +287,7 @@ things it caught here were both invisible by eye.
   the list semantics a screen reader announces ("step 2 of 4"). `Reveal` now
   takes an `as` prop.
 
-When auditing, force the settled state first — reveals start at `opacity: 0`,
+When auditing, force the settled state first, because reveals start at `opacity: 0`
 and sampling mid-transition reports contrast failures that do not exist:
 
 ```js
@@ -299,7 +299,7 @@ await page.addStyleTag({ content:
 
 `.github/workflows/ci.yml` runs lint, typecheck and build on every push and
 pull request, plus a guard for the `next/font` hash desync described under
-Known warnings — it fails the build if a class on `<html>` resolves to no rule
+Known warnings. It fails the build if a class on `<html>` resolves to no rule
 in the stylesheet, which is how body text silently loses its typeface.
 
 ## Known warnings
@@ -310,6 +310,6 @@ in the stylesheet, which is how body text silently loses its typeface.
   to reduce font-swap layout shift. The font itself loads and renders normally.
 - `npm audit` reports high-severity Next.js advisories that are only fixed in
   Next 16. They cover middleware, rewrites, Server Actions, and the image
-  optimizer — none of which this site uses; it's four static prerendered routes.
+  optimizer, none of which this site uses; it's four static prerendered routes.
   Next is pinned to the latest 14.2.x patch. Revisit if the site ever gains a
   server-side surface (e.g. a lead-capture form).

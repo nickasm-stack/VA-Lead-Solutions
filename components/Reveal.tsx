@@ -20,7 +20,7 @@ export default function Reveal({
   className?: string;
   /**
    * Element to render. Inside a list or a description list the wrapper must
-   * be the `li`/`div` the parent expects — a stray `div` in an `ol` is
+   * be the `li`/`div` the parent expects. A stray `div` in an `ol` is
    * invalid markup and drops the list semantics screen readers announce.
    */
   as?: "div" | "li";
