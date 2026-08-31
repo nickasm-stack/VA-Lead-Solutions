@@ -208,12 +208,30 @@ slow.
 Two ways to put it in front of someone without it reaching search engines.
 
 **A Vercel preview deployment** is the accurate one — the real site, real
-behaviour, on a `*.vercel.app` URL. Push a branch (or open a PR) and Vercel
-builds it. Two independent things keep it out of the index: Vercel sends
-`X-Robots-Tag: noindex` on preview deployments itself, and this repo detects
-the `*.vercel.app` hostname and serves `noindex` plus a disallow-all
-`robots.txt` (see the table above). It still canonicalises to
-`valeadsolutions.com`, so any link equity points at production.
+behaviour, on a `*.vercel.app` URL.
+
+First-time setup:
+
+1. At vercel.com, **Add New → Project**, and import `nickasm-stack/VA-Lead-Solutions`.
+2. Leave every build setting alone. Next.js is detected automatically; the
+   defaults (`npm ci`, `npm run build`, `.next`) are what this repo expects,
+   and a clean `npm ci && npm run build` from a fresh checkout is verified to
+   work. `engines.node` in package.json pins the runtime.
+3. Set **no environment variables** — see below.
+4. Deploy. Every later push to any branch builds its own preview URL; pushes
+   to the default branch go to production.
+
+**No environment variables are needed for a preview.** `NEXT_PUBLIC_SITE_URL`
+already defaults to the canonical domain, and previews are kept out of the
+index automatically — twice over. Vercel sends `X-Robots-Tag: noindex` on
+preview deployments itself, and this repo detects the `*.vercel.app` hostname
+and serves `noindex` plus a disallow-all `robots.txt` (see the table above).
+The preview still canonicalises to `valeadsolutions.com`, so nothing points
+search engines at it.
+
+Attaching `valeadsolutions.com` to the project later turns production
+indexable on its own — that is the only difference between the two, and it
+needs no code change.
 
 **Production with indexing held off** is the other: deploy to the real domain
 with `NEXT_PUBLIC_SITE_INDEXABLE=false`. The site is live at its proper
