@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Newsreader, Public_Sans } from "next/font/google";
 import "./globals.css";
-import { brand } from "@/data/copy";
+import { brand, hero } from "@/data/copy";
+import { siteUrl, isIndexable } from "@/lib/site";
+import StructuredData from "@/components/StructuredData";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -18,10 +20,64 @@ const publicSans = Public_Sans({
   display: "swap",
 });
 
+const title = `${brand.name} — Lead Generation & Call Center Solutions`;
+const description =
+  "Exclusive real-time and aged leads across mortgage, legal, home services, and business lending — plus call center staffing and dialer solutions.";
+
 export const metadata: Metadata = {
-  title: `${brand.name} — Lead Generation & Call Center Solutions`,
-  description:
-    "Exclusive real-time and aged leads across mortgage, legal, home services, and business lending — plus call center staffing and dialer solutions.",
+  // Required for canonical and Open Graph URLs to resolve to absolute ones.
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  applicationName: brand.name,
+  keywords: [
+    "lead generation",
+    "exclusive real-time leads",
+    "aged leads",
+    "call center solutions",
+    "mortgage leads",
+    "legal leads",
+    "home services leads",
+    "business lending leads",
+  ],
+  alternates: { canonical: "/" },
+  // Flipped by NEXT_PUBLIC_SITE_INDEXABLE — see lib/site.ts.
+  robots: isIndexable
+    ? {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+          "max-video-preview": -1,
+        },
+      }
+    : { index: false, follow: false },
+  openGraph: {
+    type: "website",
+    siteName: brand.name,
+    title,
+    description,
+    url: "/",
+    locale: "en_US",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: `${brand.name} — ${hero.headline}`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/opengraph-image.png"],
+  },
+  formatDetection: { telephone: true, email: true, address: false },
 };
 
 export default function RootLayout({
@@ -43,6 +99,7 @@ export default function RootLayout({
             }}
           />
         </noscript>
+        <StructuredData />
       </head>
       <body>{children}</body>
     </html>

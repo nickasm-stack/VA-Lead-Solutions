@@ -147,6 +147,62 @@ close to zero. A form changes that category, and these stop being optional:
   them as a reportable event and plan accordingly.
 - `form-action` in the CSP will need widening if the form posts off-origin.
 
+## Search indexing
+
+Verified against the running build:
+
+- `robots.txt` and `sitemap.xml` are generated (`app/robots.ts`,
+  `app/sitemap.ts`) and reference the canonical origin.
+- Canonical URL, Open Graph and Twitter card tags, and a 1200x630 share image
+  at `public/opengraph-image.png`.
+- JSON-LD for `Organization` and `WebSite`.
+- All copy is server-rendered — the page's full text is in the HTML source,
+  so it does not depend on JavaScript to be read.
+
+**The scroll reveals do not hide content from crawlers.** They start at
+`opacity: 0`, which is a fair thing to worry about, but rendering the page in
+a tall crawler-style viewport reveals all 41 elements without any scrolling,
+and the rendered text length is identical either way.
+
+### Two things to set before launch
+
+**1. `NEXT_PUBLIC_SITE_URL`.** Everything above derives from it, and it
+defaults to `https://valeadsolutions.com`. If the real domain differs, every
+canonical tag, Open Graph URL and sitemap entry points at the wrong host —
+worse than having none. Set it in the Vercel project's environment variables.
+
+**2. `NEXT_PUBLIC_SITE_INDEXABLE`.** Defaults to indexable. Set it to `false`
+to serve `noindex` plus a disallow-all `robots.txt`.
+
+Consider holding indexing until the bracketed placeholders in `data/copy.ts`
+are replaced. Whatever Google indexes is what it shows in results, so
+launching as-is risks "[Adam: confirm delivery method...]" appearing as your
+search snippet, and getting that removed again is slow. Use it for preview
+deployments regardless, so staging never competes with production.
+
+### Structured data will not state a placeholder
+
+`components/StructuredData.tsx` omits any field still carrying a bracketed
+placeholder. Right now that means the phone number is absent (it is still the
+`000-0000` dummy) and no `FAQPage` is emitted at all, because every answer is
+a placeholder. Both appear automatically once the copy is real — nothing to
+remember.
+
+This matters more than it looks: a `FAQPage` is eligible for rich results, so
+placeholder answers could be displayed directly under the search listing, and
+structured data that contradicts the page risks a manual action.
+
+### After launch
+
+- Verify the domain in Google Search Console and Bing Webmaster Tools, and
+  submit the sitemap.
+- Confirm one host answers — `www` and apex should not both serve; redirect
+  one to the other so the canonical is unambiguous.
+- Add a Google Business Profile if the business has a service address. For a
+  regional lead-gen firm that is usually the largest single source of
+  qualified search traffic, and it is where `LocalBusiness` schema and an
+  address would then be worth adding.
+
 ## Known warnings
 
 - `Failed to find font override values for font 'Newsreader'` during `npm run
