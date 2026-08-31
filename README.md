@@ -111,16 +111,41 @@ Two caveats that decide whether the above is actually in force:
   two-year `max-age` is not something a visitor can clear. Do not submit to the
   HSTS preload list until the domain has been stable on HTTPS for a while —
   removal from that list takes months.
-- **Decide on the image optimizer.** `/_next/image` is reachable when a Next
-  server hosts the site, and answers arbitrary `w`/`q` permutations — each one
-  a CPU-bound resize plus a cache write. External URLs and path traversal are
-  correctly rejected, so the exposure is resource exhaustion, not disclosure.
-  There is exactly one `<Image>` on the site (a 40px logo from a 309KB
-  source), so `images: { unoptimized: true }` with a pre-sized asset removes
-  the endpoint entirely and makes the site statically exportable. Recommended
-  unless the site grows real imagery.
 - **Set up dependency updates.** Enable Dependabot or Renovate on the repo.
   The remaining `npm audit` advisories are Next 16-only fixes; see below.
+- **Restrict who can deploy.** Protect the default branch and require review,
+  so a merge is the only route to production.
+
+### Image optimizer: off, deliberately
+
+`images: { unoptimized: true }`. `/_next/image` used to answer arbitrary
+`w`/`q` permutations, each one a CPU-bound resize and a cache write — and on
+Vercel a *billed* transformation, which makes it a cost-abuse vector as well
+as a denial-of-service one. External URLs and path traversal were correctly
+rejected, so the exposure was resource exhaustion, not disclosure.
+
+The site has exactly one image: a 40px logo. `public/va-logo-web.png` (160px,
+26KB) is what the page serves; `public/va-logo.png` is kept as the 587px
+original. With the optimizer off the endpoint 404s, and the site stays
+statically exportable.
+
+If real imagery is ever added, re-enable it and pre-size assets, or keep it
+off and generate sized variants at build time.
+
+### If a contact or quote form is ever added
+
+The site currently collects nothing, which is why its attack surface is
+close to zero. A form changes that category, and these stop being optional:
+
+- Spam and abuse handling, and rate limiting on the endpoint.
+- A privacy policy, plus a lawful basis for storing the enquiry.
+- Consent capture appropriate to the industry — for mortgage and legal
+  enquiries this is TCPA territory, and the consent record matters as much
+  as the lead.
+- Encrypted transport and storage, and a decision about retention. Consumer
+  mortgage and legal enquiries are sensitive personal data; treat a breach of
+  them as a reportable event and plan accordingly.
+- `form-action` in the CSP will need widening if the form posts off-origin.
 
 ## Known warnings
 

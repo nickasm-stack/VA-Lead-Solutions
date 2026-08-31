@@ -45,6 +45,12 @@ const securityHeaders = [
 
 const nextConfig = {
   reactStrictMode: true,
+  // The only image on the site is a 40px logo, pre-sized to 160px in
+  // public/va-logo-web.png. Leaving the optimizer on would expose
+  // /_next/image, which answers arbitrary w/q permutations — each a
+  // CPU-bound resize, and on Vercel a billed transformation. Off, it is not
+  // reachable at all, and the site stays statically exportable.
+  images: { unoptimized: true },
   // Don't advertise the framework and version to scanners.
   poweredByHeader: false,
   async headers() {

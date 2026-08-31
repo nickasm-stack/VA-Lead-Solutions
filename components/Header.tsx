@@ -23,7 +23,7 @@ export default function Header() {
       <Container className="flex items-center justify-between py-3.5">
         <a href="#" className="group flex items-center gap-3" aria-label={brand.name}>
           <Image
-            src="/va-logo.png"
+            src="/va-logo-web.png"
             alt=""
             width={40}
             height={40}
