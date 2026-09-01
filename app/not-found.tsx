@@ -24,7 +24,7 @@ export default function NotFound() {
       <main>
         <section className="bg-va-gradient">
           <Container className="py-28 text-center md:py-36">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-teal-light">
+            <p className="eyebrow text-teal-light">
               404
             </p>
             <h1 className="mx-auto mt-6 max-w-2xl text-balance font-display text-4xl italic text-white md:text-5xl">

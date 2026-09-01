@@ -17,6 +17,14 @@ export default function StructuredData() {
     url: siteUrl,
     logo: `${siteUrl}/va-logo-web.png`,
     email: brand.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: `${brand.address.street}, ${brand.address.suite}`,
+      addressLocality: brand.address.city,
+      addressRegion: brand.address.state,
+      postalCode: brand.address.zip,
+      addressCountry: brand.address.country,
+    },
     ...(hasRealPhone && {
       telephone: brand.phoneDisplay,
       contactPoint: {

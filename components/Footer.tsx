@@ -11,6 +11,14 @@ export default function Footer() {
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-charcoal/80">
               {footer.tagline}
             </p>
+            {/* A real, checkable address is one of the few trust signals a
+                lead-generation site can offer a first-time buyer. */}
+            <address className="mt-5 text-sm not-italic leading-relaxed text-charcoal/80">
+              {brand.address.street}, {brand.address.suite}
+              <br />
+              {brand.address.city}, {brand.address.state} {brand.address.zip}
+            </address>
+
             <div className="mt-5 flex flex-col items-start gap-1.5 text-sm">
               <a href={brand.phoneHref} className="link-underline text-ink-950">
                 {brand.phoneDisplay}
@@ -26,7 +34,7 @@ export default function Footer() {
 
           {footer.columns.map((column) => (
             <nav key={column.title} aria-label={column.title}>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-charcoal/80">
+              <h2 className="eyebrow text-charcoal/80">
                 {column.title}
               </h2>
               <ul className="mt-4 flex flex-col gap-2.5">

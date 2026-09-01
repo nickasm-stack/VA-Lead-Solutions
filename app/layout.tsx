@@ -8,7 +8,9 @@ import StructuredData from "@/components/StructuredData";
 const newsreader = Newsreader({
   subsets: ["latin"],
   variable: "--font-newsreader",
-  weight: ["400", "500", "600"],
+  // Only the regular weight is used; the display face carries emphasis
+  // through size and italic rather than through weight.
+  weight: ["400"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -16,7 +18,7 @@ const newsreader = Newsreader({
 const publicSans = Public_Sans({
   subsets: ["latin"],
   variable: "--font-public-sans",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 

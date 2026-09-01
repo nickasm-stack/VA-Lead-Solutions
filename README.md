@@ -37,9 +37,9 @@ something to confirm with Adam before this launches:
   marketing language.
 - **Dialer platform/type**, and any compliance features worth naming
   (TCPA compliance, DNC scrubbing).
-- **The "Why VA Lead Solutions" paragraph**: 2–3 real, checkable specifics:
+- **The "Why VA Lead Solutions" paragraph**: 2–3 specifics:
   years in business, volume of leads delivered, number of active clients,
-  certifications. No invented stats; leave it as the placeholder until
+  certifications. Leave it as the question until
   Adam gives real numbers.
 
 Nothing else in the codebase needs to change once these are filled in;
@@ -248,17 +248,16 @@ being unguessable.
 One caveat either way: `tel:` and `mailto:` links behave normally on a real
 deployment, but not in an embedded preview pane.
 
-### Structured data will not state a placeholder
+### Structured data waits for real answers
 
 `components/StructuredData.tsx` omits any field still carrying a bracketed
-placeholder. Right now that means the phone number is absent (it is still the
-`000-0000` dummy) and no `FAQPage` is emitted at all, because every answer is
-a placeholder. Both appear automatically once the copy is real, with nothing to
-remember.
+question. Right now that means the phone number is absent (it is still the
+`000-0000` dummy) and no `FAQPage` is emitted, because the answers are still
+questions. Both appear automatically once the copy is filled in, with nothing
+to remember.
 
-This matters more than it looks: a `FAQPage` is eligible for rich results, so
-placeholder answers could be displayed directly under the search listing, and
-structured data that contradicts the page risks a manual action.
+It matters because a `FAQPage` is eligible for rich results, so an unanswered
+question could be displayed directly under the search listing.
 
 ### After launch
 

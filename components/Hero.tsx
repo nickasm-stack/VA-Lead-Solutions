@@ -7,7 +7,7 @@ export default function Hero() {
     <section className="hero bg-va-gradient">
       <Container className="relative py-24 text-center md:py-32">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-teal-light md:text-sm">
+          <p className="eyebrow text-teal-light">
             {hero.eyebrow}
           </p>
         </Reveal>

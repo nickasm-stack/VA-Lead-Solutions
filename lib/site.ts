@@ -50,7 +50,7 @@ if (onVercelHostname) {
   );
 }
 
-/** Copy still carrying a bracketed [Adam: ...] / [X] placeholder. */
+/** Copy still carrying a bracketed question for Adam. */
 export const hasPlaceholder = (text: string) => /\[/.test(text);
 
 /** The phone number is a placeholder until it stops being the 000 dummy. */

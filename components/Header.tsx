@@ -29,7 +29,7 @@ export default function Header() {
             height={40}
             className="rounded-sm transition-transform duration-200 ease-out group-hover:scale-105 group-active:scale-100"
           />
-          <span className="font-display text-lg tracking-tight text-ink-950 transition-colors duration-200 group-hover:text-teal">
+          <span className="font-display text-lg text-ink-950 transition-colors duration-200 group-hover:text-teal">
             {brand.name}
           </span>
         </a>
@@ -49,7 +49,7 @@ export default function Header() {
         <div className="flex items-center gap-1">
           <a
             href={brand.phoneHref}
-            className="btn btn-primary hidden px-4 py-2.5 text-sm font-medium sm:inline-flex"
+            className="btn btn-primary hidden px-4 py-2.5 text-sm font-semibold sm:inline-flex"
           >
             {brand.phoneDisplay}
           </a>

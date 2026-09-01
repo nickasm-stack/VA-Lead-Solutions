@@ -1,20 +1,24 @@
 // ─────────────────────────────────────────────────────────────────────────
 // SITE COPY: everything editable lives here.
 //
-// Anything wrapped like [THIS] is a placeholder that needs a real answer
-// from Adam before launch. Search this file for "[" to find every one of
-// them in one pass. Nothing else in the codebase needs to change once
-// these are filled in.
-//
-// Nothing in this file invents a number, a client name, or a testimonial.
-// Where a section needs one, the placeholder says so.
+// Every [bracketed] item is a question for Adam. Search this file for "["
+// to find them all in one pass. Nothing else in the codebase needs to change
+// once the answers are in.
 // ─────────────────────────────────────────────────────────────────────────
 
 export const brand = {
   name: "VA Lead Solutions",
-  phoneDisplay: "1-800-000-0000", // ⚠️ PLACEHOLDER: swap for the real number
-  phoneHref: "tel:+18000000000", // ⚠️ update to match phoneDisplay once real
+  phoneDisplay: "1-800-000-0000", // PLACEHOLDER: real number goes here
+  phoneHref: "tel:+18000000000", // update to match phoneDisplay
   email: "Info@valeadsolutions.com",
+  address: {
+    street: "30095 Northwestern Highway",
+    suite: "Suite 10A",
+    city: "Farmington Hills",
+    state: "MI",
+    zip: "48334",
+    country: "US",
+  },
 };
 
 export const nav = {
@@ -34,13 +38,13 @@ export const hero = {
     "VA Lead Solutions provides exclusive real-time and aged leads, along with call center staffing and dialer solutions, for businesses that need consistent, qualified pipeline.",
   cta: "Call for pricing",
   ctaSecondary: "See what we deliver",
-  // Shown as a strip under the hero. These are claims, so they stay as
-  // placeholders; see stats.note below.
+  // The value slot stays short so the strip keeps its shape; the question
+  // sits in the label.
   trust: [
-    { value: "[X]", label: "Leads delivered" },
-    { value: "[X]", label: "Active clients" },
+    { value: "?", label: "Leads delivered to date?" },
+    { value: "?", label: "Active clients?" },
     { value: "4", label: "Industries served" },
-    { value: "[X]", label: "Years in business" },
+    { value: "?", label: "Years in business?" },
   ],
 };
 
@@ -56,8 +60,8 @@ export const leads = {
       description:
         "Delivered the moment they're generated, sold to you and no one else.",
       points: [
-        '[Adam: confirm delivery method, e.g. "via API, CRM integration, or live transfer"]',
-        '[Adam: confirm typical delivery speed, e.g. "within 60 seconds of generation"]',
+        "[How are real-time leads delivered: API, CRM integration, live transfer?]",
+        "[How quickly do they arrive after being generated?]",
         "Sold once, never resold",
       ],
     },
@@ -67,8 +71,8 @@ export const leads = {
       description:
         "A lower-cost way to expand outreach volume when you have the capacity to work them.",
       points: [
-        '[Adam: confirm aged lead age range, e.g. "30–90 days old"]',
-        '[Adam: confirm sourcing/vetting process, e.g. "re-verified before resale"]',
+        "[How old are aged leads, typically?]",
+        "[How are they sourced and vetted before resale?]",
         "Priced below real-time volume",
       ],
     },
@@ -84,22 +88,22 @@ export const industries = {
     {
       name: "Mortgage",
       icon: "home" as const,
-      description: "[Adam: confirm mortgage lead criteria: purchase, refinance, credit band, LTV?]",
+      description: "[What defines a mortgage lead: purchase or refinance, credit band, LTV?]",
     },
     {
       name: "Legal",
       icon: "scale" as const,
-      description: "[Adam: confirm legal case types: mass tort, personal injury, disability?]",
+      description: "[Which case types do you cover: mass tort, personal injury, disability?]",
     },
     {
       name: "Home Services",
       icon: "wrench" as const,
-      description: "[Adam: confirm home services trades: roofing, solar, HVAC, windows?]",
+      description: "[Which trades do you cover: roofing, solar, HVAC, windows?]",
     },
     {
       name: "Business Lending",
       icon: "briefcase" as const,
-      description: "[Adam: confirm business lending criteria: revenue floor, time in business?]",
+      description: "[What defines a business lending lead: revenue floor, time in business?]",
     },
   ],
 };
@@ -114,19 +118,19 @@ export const callCenter = {
       name: "Onshore & Offshore Agents",
       icon: "headset" as const,
       description:
-        'Trained call center agents available [Adam: confirm hours/timezone coverage, e.g. "across all U.S. time zones, with 24/7 coverage available"]. [Adam: confirm agent locations: which onshore and offshore regions?] [Adam: confirm minimum seat/agent commitment, if any].',
+        "Trained call center agents. [What hours and time zones do you cover? Which onshore and offshore regions are agents based in? Is there a minimum seat commitment?]",
     },
     {
       name: "AI Agent Alternatives",
       icon: "spark" as const,
       description:
-        '[Adam: what specifically makes this a "better alternative" than typical AI agents? e.g. higher connect rate, human escalation path, custom scripting, faster response time; it needs a real, specific claim, not a generic one].',
+        "[What makes this a better alternative to typical AI agents: connect rate, human escalation, custom scripting, response time?]",
     },
     {
       name: "Dialer Solutions",
       icon: "phone" as const,
       description:
-        "[Adam: confirm dialer type/platform, e.g. predictive dialer, power dialer, specific software name] [Adam: confirm any compliance features worth naming, e.g. TCPA-compliant, DNC scrubbing].",
+        "[Which dialer platform do you use: predictive, power, or a named product? Which compliance features should we name: TCPA, DNC scrubbing?]",
     },
   ],
 };
@@ -141,22 +145,21 @@ export const process = {
     {
       name: "Tell us your criteria",
       description:
-        "Industry, geography, volume, and what a qualified lead looks like for your team. [Adam: confirm whether there is a minimum order].",
+        "Industry, geography, volume, and what a qualified lead looks like for your team. [Is there a minimum order?]",
     },
     {
       name: "We build the campaign",
       description:
-        "[Adam: confirm what happens here: sourcing, script development, compliance review, test batch?]",
+        "[What happens at this stage: sourcing, script development, compliance review, a test batch?]",
     },
     {
       name: "Leads and calls start",
-      description:
-        "[Adam: confirm typical time from agreement to first delivery, e.g. \"within X business days\"].",
+      description: "[How long from agreement to first delivery?]",
     },
     {
       name: "We adjust on your feedback",
       description:
-        "[Adam: confirm how performance is reviewed and how filters get tuned: weekly calls, dashboard, replacement policy for bad leads?]",
+        "[How is performance reviewed, and how do filters get tuned: weekly calls, a dashboard, a replacement policy?]",
     },
   ],
 };
@@ -164,16 +167,13 @@ export const process = {
 export const whyUs = {
   eyebrow: "Why us",
   heading: "Why VA Lead Solutions",
-  // This section most needs Adam's real input. Each card below is a claim,
-  // so each stays bracketed until he confirms it.
   intro:
-    "[Adam: fill in 2–3 real, specific details, e.g. \"Founded in [YEAR]\", \"[X] leads delivered to date\", \"[X] active clients\", or what makes these leads or agents different from competitors. Real, checkable specifics only; no invented stats.]",
+    "[What should this section say? Founding year, leads delivered to date, active clients, certifications, or what makes your leads and agents different from competitors.]",
   points: [
     {
       name: "Exclusive means exclusive",
       icon: "lock" as const,
-      description:
-        "Real-time leads are sold once. [Adam: confirm this is accurate and whether it's contractual].",
+      description: "Real-time leads are sold once. [Is that contractual?]",
     },
     {
       name: "Leads and agents together",
@@ -185,7 +185,7 @@ export const whyUs = {
       name: "Compliance",
       icon: "shield" as const,
       description:
-        "[Adam: confirm which apply: TCPA compliance, DNC scrubbing, TrustedForm/Jornaya certificates, consent capture].",
+        "[Which of these apply: TCPA compliance, DNC scrubbing, TrustedForm or Jornaya certificates, consent capture?]",
     },
     {
       name: "Priced to your volume",
@@ -197,16 +197,12 @@ export const whyUs = {
 };
 
 export const stats = {
-  // ⚠️ Every value here is a placeholder. Do not replace these with estimates
-  // or illustrative figures. A marketing site that states a number is making
-  // a factual claim about the business. Fill in from Adam's real records, or
-  // delete this section from app/page.tsx.
-  note: "[Adam: these four numbers need to come from real records. If the numbers aren't ready, this whole section should come off the page rather than ship with estimates.]",
+  note: "[Can you fill in these four numbers? If any of them aren't something you want published, tell us and we'll drop that tile.]",
   items: [
-    { value: "[X]", label: "Leads delivered to date" },
-    { value: "[X]", label: "Active clients" },
-    { value: "[X]", label: "Agents available" },
-    { value: "[X]", label: "Average delivery time" },
+    { value: "?", label: "Leads delivered to date?" },
+    { value: "?", label: "Active clients?" },
+    { value: "?", label: "Agents available?" },
+    { value: "?", label: "Average delivery time?" },
   ],
 };
 
@@ -216,27 +212,27 @@ export const faq = {
   items: [
     {
       q: "What does a lead cost?",
-      a: "Pricing depends on lead type, volume, exclusivity, and industry, so there's no flat rate card. Call and we'll quote against your criteria. [Adam: confirm whether you want to publish a starting price or keep it call-only].",
+      a: "Pricing depends on lead type, volume, exclusivity, and industry, so there's no flat rate card. Call and we'll quote against your criteria. [Do you want to publish a starting price, or keep it call-only?]",
     },
     {
       q: "How are exclusive leads delivered?",
-      a: '[Adam: confirm delivery method and speed, e.g. "posted to your CRM via API within 60 seconds of generation, or delivered as a live transfer"].',
+      a: "[How are leads delivered, and how fast?]",
     },
     {
       q: "What happens if a lead is bad?",
-      a: "[Adam: confirm the replacement or credit policy, and the window for reporting a bad lead. This is the single most common question buyers ask; it needs a real answer].",
+      a: "[What is the replacement or credit policy, and how long do buyers have to report a bad lead?]",
     },
     {
       q: "Is there a minimum order or contract?",
-      a: "[Adam: confirm minimum spend, minimum volume, and contract length, if any].",
+      a: "[Is there a minimum spend, minimum volume, or contract length?]",
     },
     {
       q: "Are the leads TCPA compliant?",
-      a: "[Adam: confirm compliance posture: consent capture, TrustedForm/Jornaya certificates, DNC scrubbing. Answer precisely; this one carries legal weight].",
+      a: "[How is consent captured? Do TrustedForm or Jornaya certificates come with each lead, and is DNC scrubbing applied?]",
     },
     {
       q: "Can I buy agents without buying leads?",
-      a: "[Adam: confirm whether call center staffing can be purchased standalone, and any minimum seat commitment].",
+      a: "[Can call center staffing be bought on its own, and is there a minimum seat commitment?]",
     },
   ],
 };

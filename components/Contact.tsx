@@ -7,10 +7,10 @@ export default function Contact() {
     <section id="contact" className="bg-va-gradient py-20 md:py-28">
       <Container className="text-center">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-teal-light">
+          <p className="eyebrow text-teal-light">
             {contact.eyebrow}
           </p>
-          <h2 className="mt-3 font-display text-3xl text-white md:text-4xl">
+          <h2 className="mt-3 text-balance font-display text-[32px] leading-tight text-white md:text-[40px]">
             {contact.heading}
           </h2>
           <p className="mx-auto mt-4 max-w-md leading-relaxed text-white/75">
