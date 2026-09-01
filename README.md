@@ -341,6 +341,27 @@ pull request, plus a guard for the `next/font` hash desync described under
 Known warnings. It fails the build if a class on `<html>` resolves to no rule
 in the stylesheet, which is how body text silently loses its typeface.
 
+## Scroll behaviour
+
+Two things were measured and fixed, both of which read as "the page does not
+scroll smoothly":
+
+- The sticky header carried `backdrop-filter: blur(10px)`. A blur on a
+  full-width sticky bar makes the compositor re-blur that strip every frame
+  while scrolling. Measured at 1440px: p95 frame time 23.0ms with it against
+  16.9ms without, and two dropped frames against none, on hardware faster
+  than most visitors will have. The header sits above the hero rather than
+  over it, so an opaque background looks identical at rest.
+- Anchor targets had no `scroll-margin-top`, so a nav link scrolled the
+  section flush to the viewport top, which is underneath the 69px sticky
+  header: the heading you jumped to was the one thing hidden. Now
+  `scroll-margin-top: 5rem` on `section[id]`.
+
+`scroll-behavior: smooth` on `html` is kept deliberately. Measured over a
+full-page anchor jump it holds 60fps (median 16.7ms, p95 17.6ms) with the
+reveals firing as it passes. Remove that one line in `app/globals.css` if
+instant jumps are preferred.
+
 ## Known warnings
 
 - `npm warn allow-scripts ... unrs-resolver` during install is expected.

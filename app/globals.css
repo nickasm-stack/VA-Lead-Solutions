@@ -17,6 +17,12 @@
     scroll-behavior: smooth;
   }
 
+  /* Anchor targets sit below the sticky header rather than under it. Without
+     this, jumping to a section hides the heading being jumped to. */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
   body {
     @apply bg-paper text-charcoal font-body antialiased;
   }
@@ -130,15 +136,14 @@
 
   /* ── Sticky header ─────────────────────────────────────────────────────── */
   .site-header {
-    @apply sticky top-0 z-40 border-b border-transparent bg-paper/80;
-    backdrop-filter: saturate(1.4) blur(10px);
+    @apply sticky top-0 z-40 border-b border-transparent bg-paper;
     transition:
       border-color var(--dur-card) var(--ease),
       box-shadow var(--dur-card) var(--ease),
       background-color var(--dur-card) var(--ease);
   }
   .site-header.is-scrolled {
-    @apply border-line bg-paper/95;
+    @apply border-line bg-paper;
     box-shadow: 0 8px 26px -20px rgb(9 17 22 / 0.7);
   }
 
