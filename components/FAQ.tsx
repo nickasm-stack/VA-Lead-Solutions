@@ -5,6 +5,7 @@ import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/Reveal";
 import { faq } from "@/data/copy";
+import AdamPrompt from "@/components/ui/AdamPrompt";
 
 export default function FAQ() {
   // Single-open accordion: opening one closes whichever was open.
@@ -52,7 +53,9 @@ export default function FAQ() {
                     data-open={open ? "" : undefined}
                   >
                     <div className="faq-panel__inner">
-                      <p className="faq-answer">{item.a}</p>
+                      <p className="faq-answer">
+                        <AdamPrompt>{item.a}</AdamPrompt>
+                      </p>
                     </div>
                   </div>
                 </div>

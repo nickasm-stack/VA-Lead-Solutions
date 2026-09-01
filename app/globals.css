@@ -36,6 +36,41 @@
 }
 
 @layer components {
+  /* ── Pending copy (temporary) ──────────────────────────────────────────
+     Marks anything Adam still has to supply. Two reds, because one cannot
+     carry both grounds: #B91C1C clears AA on paper and mist, and a light red
+     does the same on the navy sections, where the dark red would disappear.
+     Delete this block, components/ui/AdamPrompt.tsx and isPending() once the
+     copy is final. */
+  .pending {
+    color: #b91c1c;
+    font-weight: 600;
+    text-decoration: underline dotted currentColor 1px;
+    text-underline-offset: 3px;
+  }
+
+  .pending__tag {
+    @apply font-body text-[0.85em] font-semibold uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Navy sections and dark tiles need the lighter red to stay legible. */
+  .bg-va-gradient .pending,
+  .tile--dark .pending,
+  .bg-ink-950 .pending {
+    color: #ffa3a3;
+  }
+
+  /* The hero's primary call to action is a white button inside the gradient
+     section, so the dark-section rule above would put light red on white.
+     Specificity has to win it back. */
+  .btn-invert .pending { color: #b91c1c; }
+
+  /* The header CTA's whole label is the placeholder number, and no red text
+     clears AA against the teal button. Flag the button itself instead. */
+  .btn-pending { background-color: #b91c1c; }
+  .btn-pending:hover { background-color: #911616; }
+
   /* ── Labels ────────────────────────────────────────────────────────────
      Every uppercase micro-label on the page: section eyebrows, stat and
      trust captions, footer column headings. One family, size, weight and

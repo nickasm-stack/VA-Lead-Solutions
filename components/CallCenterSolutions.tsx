@@ -3,6 +3,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/Reveal";
 import Icon from "@/components/ui/Icon";
 import { callCenter } from "@/data/copy";
+import AdamPrompt from "@/components/ui/AdamPrompt";
 
 export default function CallCenterSolutions() {
   return (
@@ -23,7 +24,9 @@ export default function CallCenterSolutions() {
                   <Icon name={item.icon} />
                 </span>
                 <h3 className="tile__title tile__title--dark">{item.name}</h3>
-                <p className="tile__body tile__body--dark">{item.description}</p>
+                <p className="tile__body tile__body--dark">
+                  <AdamPrompt>{item.description}</AdamPrompt>
+                </p>
               </article>
             </Reveal>
           ))}

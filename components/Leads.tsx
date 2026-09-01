@@ -3,6 +3,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/Reveal";
 import Icon from "@/components/ui/Icon";
 import { leads } from "@/data/copy";
+import AdamPrompt from "@/components/ui/AdamPrompt";
 
 export default function Leads() {
   return (
@@ -27,7 +28,9 @@ export default function Leads() {
                   {type.points.map((point) => (
                     <li key={point}>
                       <span className="card-lead__dot" aria-hidden="true" />
-                      <span>{point}</span>
+                      <span>
+                        <AdamPrompt>{point}</AdamPrompt>
+                      </span>
                     </li>
                   ))}
                 </ul>

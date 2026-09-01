@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import AdamPrompt from "@/components/ui/AdamPrompt";
 
 export default function SectionHeading({
   eyebrow,
@@ -36,7 +37,7 @@ export default function SectionHeading({
               invert ? "text-white/75" : "text-charcoal/85"
             }`}
           >
-            {intro}
+            <AdamPrompt>{intro}</AdamPrompt>
           </p>
         )}
       </div>

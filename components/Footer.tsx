@@ -1,5 +1,6 @@
 import Container from "@/components/ui/Container";
 import { brand, footer } from "@/data/copy";
+import { hasRealPhone } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -21,7 +22,9 @@ export default function Footer() {
 
             <div className="mt-5 flex flex-col items-start gap-1.5 text-sm">
               <a href={brand.phoneHref} className="link-underline text-ink-950">
-                {brand.phoneDisplay}
+                <span className={hasRealPhone ? undefined : "pending"}>
+                  {brand.phoneDisplay}
+                </span>
               </a>
               <a
                 href={`mailto:${brand.email}`}

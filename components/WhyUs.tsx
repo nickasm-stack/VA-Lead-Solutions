@@ -3,6 +3,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/Reveal";
 import Icon from "@/components/ui/Icon";
 import { whyUs } from "@/data/copy";
+import AdamPrompt from "@/components/ui/AdamPrompt";
 
 export default function WhyUs() {
   return (
@@ -23,7 +24,9 @@ export default function WhyUs() {
                 </span>
                 <div>
                   <h3 className="feature__title">{point.name}</h3>
-                  <p className="feature__body">{point.description}</p>
+                  <p className="feature__body">
+                    <AdamPrompt>{point.description}</AdamPrompt>
+                  </p>
                 </div>
               </div>
             </Reveal>

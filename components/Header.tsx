@@ -5,6 +5,7 @@ import Image from "next/image";
 import Container from "@/components/ui/Container";
 import MobileNav from "@/components/MobileNav";
 import { brand, nav } from "@/data/copy";
+import { hasRealPhone } from "@/lib/site";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -49,7 +50,9 @@ export default function Header() {
         <div className="flex items-center gap-1">
           <a
             href={brand.phoneHref}
-            className="btn btn-primary hidden px-4 py-2.5 text-sm font-semibold sm:inline-flex"
+            className={`btn btn-primary hidden px-4 py-2.5 text-sm font-semibold sm:inline-flex${
+              hasRealPhone ? "" : " btn-pending"
+            }`}
           >
             {brand.phoneDisplay}
           </a>

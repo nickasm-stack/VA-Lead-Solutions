@@ -1,6 +1,7 @@
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/Reveal";
 import { brand, contact } from "@/data/copy";
+import { hasRealPhone } from "@/lib/site";
 
 export default function Contact() {
   return (
@@ -24,7 +25,9 @@ export default function Contact() {
               href={brand.phoneHref}
               className="link-underline font-display text-3xl text-white md:text-4xl"
             >
-              {brand.phoneDisplay}
+              <span className={hasRealPhone ? undefined : "pending"}>
+                {brand.phoneDisplay}
+              </span>
             </a>
             <a
               href={`mailto:${brand.email}`}

@@ -3,6 +3,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/Reveal";
 import Icon from "@/components/ui/Icon";
 import { industries } from "@/data/copy";
+import AdamPrompt from "@/components/ui/AdamPrompt";
 
 export default function Industries() {
   return (
@@ -22,7 +23,9 @@ export default function Industries() {
                   <Icon name={item.icon} />
                 </span>
                 <h3 className="tile__title">{item.name}</h3>
-                <p className="tile__body">{item.description}</p>
+                <p className="tile__body">
+                  <AdamPrompt>{item.description}</AdamPrompt>
+                </p>
               </article>
             </Reveal>
           ))}

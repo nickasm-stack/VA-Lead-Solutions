@@ -1,6 +1,8 @@
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/Reveal";
 import { brand, hero } from "@/data/copy";
+import { isPending, hasRealPhone } from "@/lib/site";
+import AdamPrompt from "@/components/ui/AdamPrompt";
 
 export default function Hero() {
   return (
@@ -30,7 +32,10 @@ export default function Hero() {
               href={brand.phoneHref}
               className="btn btn-invert w-full px-7 py-3.5 text-sm font-semibold sm:w-auto"
             >
-              {hero.cta} &middot; {brand.phoneDisplay}
+              {hero.cta} &middot;{" "}
+              <span className={hasRealPhone ? undefined : "pending"}>
+                {brand.phoneDisplay}
+              </span>
             </a>
             <a
               href="#leads"
@@ -45,8 +50,12 @@ export default function Hero() {
           <dl className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-sm border border-white/10 bg-white/10 sm:grid-cols-4">
             {hero.trust.map((item) => (
               <div key={item.label} className="trust">
-                <dd className="trust__value">{item.value}</dd>
-                <dt className="trust__label">{item.label}</dt>
+                <dd className={`trust__value${isPending(item.value) ? " pending" : ""}`}>
+                  {item.value}
+                </dd>
+                <dt className="trust__label">
+                  <AdamPrompt>{item.label}</AdamPrompt>
+                </dt>
               </div>
             ))}
           </dl>

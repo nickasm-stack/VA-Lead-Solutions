@@ -203,6 +203,30 @@ it until the bracketed placeholders in `data/copy.ts` are replaced. Whatever
 Google indexes is what it shows in results, and getting that removed again is
 slow.
 
+### Pending copy is marked in red (temporary)
+
+Anything Adam still has to supply renders in red, tagged `ADAM:`, so the site
+can be sent over as the questionnaire itself. That covers the bracketed
+questions, the placeholder phone number, and the empty stat tiles.
+
+**It clears itself.** The marking keys off the placeholders rather than a
+switch: a bracketed question loses its highlight the moment it is answered,
+and the phone number stops being flagged as soon as it is not the `000-0000`
+dummy. There is nothing to remember to turn off, and no way to ship the red
+by accident.
+
+Two reds are needed, because one cannot carry both grounds: `#B91C1C` clears
+AA on paper and mist, and `#FFA3A3` does the same on the navy sections where
+the dark red would disappear. Two cases needed their own handling: the hero's
+primary button is white inside the gradient section, so specificity has to
+win the dark-section rule back; and the header CTA's entire label is the
+placeholder number, where no red text clears AA against the teal, so the
+button itself turns red instead.
+
+To remove once the copy is final: delete `components/ui/AdamPrompt.tsx`, the
+"Pending copy" block in `app/globals.css`, and `isPending()` in
+`lib/site.ts`, then unwrap the `<AdamPrompt>` tags.
+
 ### Showing the site before launch
 
 Two ways to put it in front of someone without it reaching search engines.

@@ -53,5 +53,15 @@ if (onVercelHostname) {
 /** Copy still carrying a bracketed question for Adam. */
 export const hasPlaceholder = (text: string) => /\[/.test(text);
 
+/**
+ * True while a value is still standing in for something Adam has to supply:
+ * a bracketed question, or the bare "?" the stat tiles show.
+ *
+ * Used only to flag pending copy in red on the review build. The flagging
+ * clears itself: once a question is answered the brackets are gone, so
+ * nothing is marked and there is no switch to remember to turn off.
+ */
+export const isPending = (text: string) => text.includes("[") || text.trim() === "?";
+
 /** The phone number is a placeholder until it stops being the 000 dummy. */
 export const hasRealPhone = !brand.phoneDisplay.includes("000-0000");

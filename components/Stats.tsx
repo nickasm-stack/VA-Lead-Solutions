@@ -1,6 +1,8 @@
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/Reveal";
 import { stats } from "@/data/copy";
+import { isPending } from "@/lib/site";
+import AdamPrompt from "@/components/ui/AdamPrompt";
 
 export default function Stats() {
   return (
@@ -16,7 +18,7 @@ export default function Stats() {
         </dl>
         <Reveal>
           <p className="mt-10 max-w-3xl text-xs leading-relaxed text-charcoal/80">
-            {stats.note}
+            <AdamPrompt>{stats.note}</AdamPrompt>
           </p>
         </Reveal>
       </Container>
