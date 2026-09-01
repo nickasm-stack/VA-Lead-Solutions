@@ -240,7 +240,9 @@ First-time setup:
 2. Leave every build setting alone. Next.js is detected automatically; the
    defaults (`npm ci`, `npm run build`, `.next`) are what this repo expects,
    and a clean `npm ci && npm run build` from a fresh checkout is verified to
-   work. `engines.node` in package.json pins the runtime.
+   work. `engines.node` pins the runtime to `22.x`: an open range like
+   `>=20` does not pin anything, it floats onto whatever major the platform
+   ships next, and Vercel warns about exactly that. CI runs the same major.
 3. Set **no environment variables**; see below.
 4. Deploy. Every later push to any branch builds its own preview URL; pushes
    to the default branch go to production.
@@ -326,6 +328,14 @@ Known warnings. It fails the build if a class on `<html>` resolves to no rule
 in the stylesheet, which is how body text silently loses its typeface.
 
 ## Known warnings
+
+- `npm warn allow-scripts ... unrs-resolver` during install is expected.
+  It arrives as a devDependency of the lint toolchain
+  (`eslint-config-next` -> `eslint-import-resolver-typescript` ->
+  `unrs-resolver`) and has a postinstall that builds native bindings. It is
+  dev-only, never reaches the browser, and cannot be removed without dropping
+  `eslint-config-next`. npm is asking for explicit approval of install
+  scripts, not reporting a problem.
 
 - `Failed to find font override values for font 'Newsreader'` during `npm run
   build` is cosmetic. Next 14 ships fallback metrics for a fixed list of Google
