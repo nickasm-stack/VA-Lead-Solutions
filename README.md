@@ -244,8 +244,22 @@ First-time setup:
    `>=20` does not pin anything, it floats onto whatever major the platform
    ships next, and Vercel warns about exactly that. CI runs the same major.
 3. Set **no environment variables**; see below.
-4. Deploy. Every later push to any branch builds its own preview URL; pushes
-   to the default branch go to production.
+4. Under **Settings → Git**, confirm **Production Branch** is `main`.
+5. Deploy. Every later push to any branch builds its own preview URL; pushes
+   to `main` go to production.
+
+**Sharing a deployment with someone outside the Vercel team.** New projects
+default to Standard Protection, which puts a Vercel login in front of
+*preview* deployments. Someone without an account on the team cannot open one.
+Production deployments are public by default, so the simplest fix is to share
+the production URL rather than a preview. Alternatively turn the gate off at
+**Settings → Deployment Protection → Vercel Authentication**.
+
+A production deployment on a `*.vercel.app` hostname is still kept out of
+search: the code detects that hostname and serves `noindex` with a
+disallow-all `robots.txt`, while the canonical points at the real domain. So
+it is public to anyone with the link and invisible to Google, which is what a
+client review wants.
 
 **No environment variables are needed for a preview.** `NEXT_PUBLIC_SITE_URL`
 already defaults to the canonical domain, and previews are kept out of the
