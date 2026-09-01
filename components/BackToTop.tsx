@@ -18,6 +18,9 @@ export default function BackToTop() {
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       className={`back-to-top${show ? " is-visible" : ""}`}
       aria-label="Back to top"
+      // Hidden by opacity rather than display, so it stays in the
+      // accessibility tree unless it is explicitly removed.
+      aria-hidden={!show}
       tabIndex={show ? 0 : -1}
     >
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"

@@ -35,7 +35,9 @@ export default function FAQ() {
                       id={`faq-trigger-${i}`}
                       className="faq-trigger"
                     >
-                      <span className="faq-question">{item.q}</span>
+                      <span className="faq-question">
+                        <AdamPrompt>{item.q}</AdamPrompt>
+                      </span>
                       <span className="faq-icon" aria-hidden="true">
                         <span className="faq-icon__bar" />
                         <span className="faq-icon__bar faq-icon__bar--v" />

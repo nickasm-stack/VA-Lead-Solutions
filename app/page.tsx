@@ -4,7 +4,6 @@ import Leads from "@/components/Leads";
 import Industries from "@/components/Industries";
 import CallCenterSolutions from "@/components/CallCenterSolutions";
 import Process from "@/components/Process";
-import Stats from "@/components/Stats";
 import WhyUs from "@/components/WhyUs";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
@@ -21,7 +20,6 @@ export default function Home() {
         <Industries />
         <CallCenterSolutions />
         <Process />
-        <Stats />
         <WhyUs />
         <FAQ />
         <Contact />

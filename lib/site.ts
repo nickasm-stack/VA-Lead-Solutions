@@ -14,7 +14,7 @@ const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
 /**
  * A *.vercel.app hostname is the deployment's address, not the site's
  * identity, so it is never used as the canonical origin and never indexed.
- * otherwise Google ends up holding a second copy of the site there, competing
+ * Otherwise Google ends up holding a second copy of the site there, competing
  * with the real domain for the same content.
  */
 const onVercelHostname = Boolean(vercelHost && /\.vercel\.app$/.test(vercelHost));
@@ -44,9 +44,10 @@ export const isIndexable = !indexingDisabled && !onVercelHostname;
 if (onVercelHostname) {
   console.warn(
     `\n[site] Deploying to ${vercelHost}, which is Vercel's own hostname.\n` +
-      `       noindex so this copy cannot compete with ${DEFAULT_SITE_URL},\n` +
-      "       which the canonical tags point at. Attach the production domain\n" +
-      "       in Vercel to make the deployment itself indexable.\n",
+      `       Serving noindex so this copy cannot compete with\n` +
+      `       ${DEFAULT_SITE_URL}, which the canonical tags point at.\n` +
+      "       Attach the production domain in Vercel to make the deployment\n" +
+      "       itself indexable.\n",
   );
 }
 

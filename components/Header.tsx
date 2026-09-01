@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import MobileNav from "@/components/MobileNav";
+import Icon from "@/components/ui/Icon";
 import { brand, nav } from "@/data/copy";
 import { hasRealPhone } from "@/lib/site";
 
@@ -56,6 +57,16 @@ export default function Header() {
           >
             {brand.phoneDisplay}
           </a>
+          <a
+            href={brand.phoneHref}
+            aria-label={`Call ${brand.phoneDisplay}`}
+            className={`btn btn-primary h-10 w-10 sm:hidden${
+              hasRealPhone ? "" : " btn-pending"
+            }`}
+          >
+            <Icon name="phone" className="h-[18px] w-[18px]" />
+          </a>
+
           <MobileNav links={nav.links} />
         </div>
       </Container>

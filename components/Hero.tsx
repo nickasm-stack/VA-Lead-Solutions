@@ -6,7 +6,7 @@ import AdamPrompt from "@/components/ui/AdamPrompt";
 
 export default function Hero() {
   return (
-    <section className="hero bg-va-gradient">
+    <section className="bg-va-gradient">
       <Container className="relative py-24 text-center md:py-32">
         <Reveal>
           <p className="eyebrow text-teal-light">

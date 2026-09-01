@@ -196,16 +196,6 @@ export const whyUs = {
   ],
 };
 
-export const stats = {
-  note: "[Can you fill in these four numbers? If any of them aren't something you want published, tell us and we'll drop that tile.]",
-  items: [
-    { value: "?", label: "[Leads delivered to date?]" },
-    { value: "?", label: "[Active clients?]" },
-    { value: "?", label: "[Agents available?]" },
-    { value: "?", label: "[Average delivery time?]" },
-  ],
-};
-
 export const faq = {
   eyebrow: "Questions",
   heading: "Frequently asked",

@@ -5,9 +5,9 @@ import { siteUrl, hasPlaceholder, hasRealPhone } from "@/lib/site";
  * JSON-LD for the organisation and the FAQ.
  *
  * Every field here is a factual claim a search engine may surface directly,
- * so anything still carrying a bracketed placeholder is omitted rather than
- * published. Structured data that contradicts the page (or states a dummy
- * phone number) risks a manual action, and is worse than emitting nothing.
+ * so anything still carrying a bracketed question is omitted rather than
+ * published. Structured data that contradicts the page, or states a dummy
+ * phone number, is worse than emitting nothing at all.
  */
 export default function StructuredData() {
   const organization = {
@@ -46,9 +46,9 @@ export default function StructuredData() {
     publisher: { "@id": `${siteUrl}/#organization` },
   };
 
-  // Only questions that have a real answer. A FAQPage whose answers read
-  // "[Adam: confirm...]" would be eligible for rich results and show exactly
-  // that text under the search listing.
+  // Only questions that have a real answer. A FAQPage is eligible for rich
+  // results, so an unanswered one could be shown, brackets and all, directly
+  // under the search listing.
   const answered = faq.items.filter(
     (item) => !hasPlaceholder(item.q) && !hasPlaceholder(item.a),
   );

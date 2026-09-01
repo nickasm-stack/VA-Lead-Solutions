@@ -67,9 +67,12 @@
   .btn-invert .pending { color: #b91c1c; }
 
   /* The header CTA's whole label is the placeholder number, and no red text
-     clears AA against the teal button. Flag the button itself instead. */
-  .btn-pending { background-color: #b91c1c; }
-  .btn-pending:hover { background-color: #911616; }
+     clears AA against the teal button. Flag the button itself instead.
+     Both selectors carry two classes so they beat .btn-primary's background
+     regardless of which rule Tailwind emits first. At equal specificity the
+     later rule wins, and this block sits above the button styles. */
+  .btn.btn-pending { background-color: #b91c1c; }
+  .btn.btn-pending:hover { background-color: #911616; }
 
   /* ── Labels ────────────────────────────────────────────────────────────
      Every uppercase micro-label on the page: section eyebrows, stat and

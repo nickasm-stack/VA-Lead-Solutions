@@ -57,6 +57,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 border-t border-line pt-6">
+          {/* Evaluated at build time, since the page is prerendered: the year
+              advances on the next deploy rather than on New Year's Day. */}
           <p className="text-xs text-charcoal/80">
             &copy; {new Date().getFullYear()} {footer.copyrightName}. All rights reserved.
           </p>

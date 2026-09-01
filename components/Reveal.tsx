@@ -5,9 +5,10 @@ import { useEffect, useRef } from "react";
 /**
  * Reveals its children as they scroll into view.
  *
- * The hidden state lives in CSS behind `.js` (set by an inline script in the
- * layout before first paint), so server-rendered content is never hidden from
- * crawlers or from anyone whose JavaScript fails to run.
+ * The hidden state is plain CSS on [data-reveal], undone by a <noscript>
+ * override in the layout. It deliberately does not hang off a class set by
+ * script: React owns <html>, so a class added there is wiped on re-render,
+ * which silently disables every reveal on the page.
  */
 export default function Reveal({
   children,

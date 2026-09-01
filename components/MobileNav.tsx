@@ -32,6 +32,20 @@ export default function MobileNav({
     };
   }, [open]);
 
+  // CSS hides the panel at lg and up, but the scroll lock is not CSS. Without
+  // this, rotating a tablet past the breakpoint with the menu open leaves the
+  // page unscrollable and nothing visible to close.
+  useEffect(() => {
+    const wide = window.matchMedia("(min-width: 1024px)");
+    const closeIfWide = () => {
+      if (wide.matches) setOpen(false);
+    };
+
+    closeIfWide();
+    wide.addEventListener("change", closeIfWide);
+    return () => wide.removeEventListener("change", closeIfWide);
+  }, []);
+
   return (
     <div className="lg:hidden">
       <button

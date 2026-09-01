@@ -23,7 +23,9 @@ export default function Leads() {
                   <Icon name={type.icon} className="h-6 w-6" />
                 </span>
                 <h3 className="card-lead__title">{type.name}</h3>
-                <p className="card-lead__body">{type.description}</p>
+                <p className="card-lead__body">
+                  <AdamPrompt>{type.description}</AdamPrompt>
+                </p>
                 <ul className="card-lead__list">
                   {type.points.map((point) => (
                     <li key={point}>
