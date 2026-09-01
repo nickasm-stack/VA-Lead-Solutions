@@ -27,8 +27,10 @@ const config: Config = {
         line: "#E1E5E7",
       },
       fontFamily: {
-        display: ["var(--font-newsreader)", "Georgia", "serif"],
-        body: ["var(--font-public-sans)", "system-ui", "sans-serif"],
+        // Fallbacks live in app/layout.tsx, where next/font bakes them into
+        // these variables. Repeating them here only duplicates the tail.
+        display: ["var(--font-newsreader)"],
+        body: ["var(--font-public-sans)"],
       },
       backgroundImage: {
         "va-gradient": "linear-gradient(180deg, #091116 0%, #172A37 45%, #244254 75%, #3C677F 100%)",

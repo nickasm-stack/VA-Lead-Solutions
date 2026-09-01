@@ -13,6 +13,15 @@ const newsreader = Newsreader({
   weight: ["400"],
   style: ["normal", "italic"],
   display: "swap",
+  // Next ships a fixed table of font metrics used to synthesise a
+  // size-adjusted fallback, and Newsreader is not in it, so every build
+  // logged "Failed to find font override values" with an error glyph for
+  // something it could not do anyway. Asking explicitly for no adjustment
+  // stops the noise without changing behaviour: measured CLS is 0.0000
+  // either way, because Newsreader and Georgia render this page's headings
+  // at identical heights.
+  adjustFontFallback: false,
+  fallback: ["Georgia", "Times New Roman", "serif"],
 });
 
 const publicSans = Public_Sans({
@@ -20,6 +29,7 @@ const publicSans = Public_Sans({
   variable: "--font-public-sans",
   weight: ["400", "500", "600"],
   display: "swap",
+  fallback: ["system-ui", "-apple-system", "Segoe UI", "sans-serif"],
 });
 
 const title = `${brand.name} | Lead Generation & Call Center Solutions`;

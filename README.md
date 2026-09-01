@@ -362,6 +362,23 @@ full-page anchor jump it holds 60fps (median 16.7ms, p95 17.6ms) with the
 reveals firing as it passes. Remove that one line in `app/globals.css` if
 instant jumps are preferred.
 
+## Fonts
+
+Fallbacks are declared once, in `app/layout.tsx`, where `next/font` bakes them
+into the CSS variables. The Tailwind stacks are just the variables: repeating
+a fallback there duplicates the tail and protects nothing, since an undefined
+variable invalidates the whole declaration rather than falling through to the
+next entry. That is exactly what the font-hash desync did, landing on
+preflight's `ui-sans-serif` with a Georgia sitting unused in the stack.
+
+Newsreader sets `adjustFontFallback: false`. Next ships a fixed table of font
+metrics used to synthesise a size-adjusted fallback, Newsreader is not in it,
+and every build logged `Failed to find font override values` with an error
+glyph for something it could not do anyway. Measured before changing
+anything: CLS is 0.0000, and Newsreader and Georgia render this page's
+headings at identical heights (883px vs 917px wide, both 90px tall), so there
+was no vertical shift for a size-adjust to correct.
+
 ## Known warnings
 
 - `npm warn allow-scripts ... unrs-resolver` during install is expected.
@@ -372,10 +389,6 @@ instant jumps are preferred.
   `eslint-config-next`. npm is asking for explicit approval of install
   scripts, not reporting a problem.
 
-- `Failed to find font override values for font 'Newsreader'` during `npm run
-  build` is cosmetic. Next 14 ships fallback metrics for a fixed list of Google
-  fonts and Newsreader isn't on it, so it can't compute a `size-adjust` fallback
-  to reduce font-swap layout shift. The font itself loads and renders normally.
 - `npm audit` reports high-severity Next.js advisories that are only fixed in
   Next 16. They cover middleware, rewrites, Server Actions, and the image
   optimizer, none of which this site uses; it's four static prerendered routes.
