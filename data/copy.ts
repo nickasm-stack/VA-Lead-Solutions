@@ -45,7 +45,7 @@ export const hero = {
   cta: "Call for pricing",
   ctaSecondary: "See what we deliver",
   trust: [
-    { value: "Millions", label: "Leads delivered" },
+    { value: "Millions", label: "Of leads delivered" },
     { value: "20+", label: "Industries served" },
     { value: "100+", label: "Years combined experience" },
   ],
@@ -124,7 +124,7 @@ export const callCenter = {
       name: "Onshore & Offshore Agents",
       icon: "headset" as const,
       description:
-        "Onshore in Michigan, 8am to midnight ET. Offshore across South America, India, Belize, the Philippines, and Mexico. Agents are matched to the work, not assigned at random. No seat minimum.",
+        "Onshore in Michigan, 8am to midnight ET, plus offshore centers worldwide. Matched to the work, with no seat minimum.",
     },
     {
       name: "Real Agents, Not AI",
@@ -151,7 +151,7 @@ export const process = {
     {
       name: "Define your criteria",
       description:
-        "Industry, geography, volume, and what counts as qualified for your team. Minimum spend is typically $5,000; pilots start at $1,500.",
+        "Industry, geography, volume, and what counts as qualified for your team.",
     },
     {
       name: "Build the campaign",
@@ -210,7 +210,7 @@ export const faq = {
   items: [
     {
       q: "What does a lead cost?",
-      a: "It depends on lead type, volume, exclusivity, and industry, so we quote against your criteria rather than a rate card. Minimum spend is typically $5,000, with pilots from $1,500.",
+      a: "It depends on lead type, volume, exclusivity, and industry, so we quote against your criteria rather than a rate card. Tell us what you need and we will price it.",
     },
     {
       q: "How are leads delivered?",
@@ -218,11 +218,11 @@ export const faq = {
     },
     {
       q: "What happens if a lead is bad?",
-      a: "It depends on the price point, and we confirm which applies before you order. Leads under a dollar are sold as delivered, with that variance priced in; on higher-value leads, where one record can reach $80, credits are reviewed case by case.",
+      a: "It depends on the price point, and we confirm which applies before you order. Low-value leads are sold as delivered, with that variance priced in. On high-value leads, credits are reviewed case by case.",
     },
     {
       q: "Is there a minimum order or contract?",
-      a: "No contract term and no lock-in. Minimum spend is typically $5,000, and we run pilots from $1,500 to prove the fit first.",
+      a: "No minimum order, no contract term, and no lock-in. Start at whatever volume makes sense to test.",
     },
     {
       q: "What compliance documentation comes with each lead?",
