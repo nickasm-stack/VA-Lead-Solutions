@@ -130,7 +130,7 @@ export const callCenter = {
       name: "Real Agents, Not AI",
       icon: "spark" as const,
       description:
-        "Every call is handled by a person. We have benchmarked our agents against AI repeatedly, and they win on conversion at comparable cost.",
+        "Every call is handled by a real person. We have tested our agents against AI repeatedly, and they outperform it every time.",
     },
     {
       name: "Dialer Solutions",
