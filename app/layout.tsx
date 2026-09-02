@@ -34,7 +34,7 @@ const publicSans = Public_Sans({
 
 const title = `${brand.name} | Lead Generation & Call Center Solutions`;
 const description =
-  "Exclusive real-time and aged leads across mortgage, legal, home services, and business lending, plus call center staffing and dialer solutions.";
+  "Real-time and aged leads across mortgage, legal, home services, and business lending, plus call center staffing and dialer solutions.";
 
 export const metadata: Metadata = {
   // Required for canonical and Open Graph URLs to resolve to absolute ones.

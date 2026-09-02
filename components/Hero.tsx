@@ -47,7 +47,7 @@ export default function Hero() {
         </Reveal>
 
         <Reveal delay={340}>
-          <dl className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-sm border border-white/10 bg-white/10 sm:grid-cols-4">
+          <dl className="mx-auto mt-16 grid max-w-3xl grid-cols-1 gap-px overflow-hidden rounded-sm border border-white/10 bg-white/10 sm:grid-cols-3">
             {hero.trust.map((item) => (
               <div key={item.label} className="trust">
                 <dd className={`trust__value${isPending(item.value) ? " pending" : ""}`}>

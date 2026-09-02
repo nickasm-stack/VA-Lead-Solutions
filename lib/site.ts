@@ -64,5 +64,9 @@ export const hasPlaceholder = (text: string) => /\[/.test(text);
  */
 export const isPending = (text: string) => text.includes("[") || text.trim() === "?";
 
-/** The phone number is a placeholder until it stops being the 000 dummy. */
-export const hasRealPhone = !brand.phoneDisplay.includes("000-0000");
+/**
+ * A real number is digits and phone punctuation, nothing else. Anything with
+ * a letter in it is still a placeholder, so this keeps working whatever shape
+ * the stand-in takes rather than matching one magic value.
+ */
+export const hasRealPhone = /^[+\d][\d\s\-().]*$/.test(brand.phoneDisplay.trim());

@@ -231,6 +231,15 @@ To remove once the copy is final: delete `components/ui/AdamPrompt.tsx`, the
 
 Two ways to put it in front of someone without it reaching search engines.
 
+**A Vercel preview deployment is now the only way to review interactions.**
+`npm run preview` still produces a faithful single file for looking at the
+page, but the JavaScript no longer runs reliably inside it. Splicing a
+hydrating Next application into one file works until it doesn't: the app
+expects to own a whole document at a real URL, and the failure modes are
+silent and depend on where Next happened to split its payload. Treat
+preview.html as a screenshot you can scroll, and use a deployment for
+anything involving a click.
+
 **A Vercel preview deployment** is the accurate one: the real site, real
 behaviour, on a `*.vercel.app` URL.
 
