@@ -41,7 +41,7 @@ export const hero = {
   eyebrow: "Lead Generation & Call Center Solutions",
   headline: "Qualified leads. Reliable call support.",
   subheadline:
-    "Real-time and aged leads, trained agents, and dialer infrastructure from one partner, so your sales team always has qualified pipeline in front of it.",
+    "We generate the leads and staff the agents who call them. One partner instead of three.",
   cta: "Call for pricing",
   ctaSecondary: "See what we deliver",
   trust: [
@@ -55,28 +55,28 @@ export const leads = {
   heading: "Leads",
   eyebrow: "What we sell",
   intro:
-    "Two ways to buy across every vertical we cover. Pricing is set by lead type, volume, exclusivity, and industry, so every campaign is quoted against your criteria rather than a fixed rate card.",
+    "Two ways to buy, priced to your criteria rather than a rate card.",
   types: [
     {
       name: "Real-Time Leads",
       icon: "bolt" as const,
       description:
-        "Delivered the moment they are generated, so your team reaches the consumer while intent is still high.",
+        "Delivered at the moment of intent, while the consumer is still looking.",
       points: [
-        "Posted to your CRM by API in real time, or routed to your floor as a live transfer",
-        "Scheduled CSV or Dropbox delivery available where batch intake fits your workflow better",
-        "Exclusive to you, or semi-exclusive across two to three buyers. Confirmed before purchase, never after",
+        "API post to your CRM, or a live transfer to your floor",
+        "Scheduled CSV or Dropbox delivery on request",
+        "Exclusive, or semi-exclusive across two to three buyers. Disclosed before you buy",
       ],
     },
     {
       name: "Aged Leads",
       icon: "layers" as const,
       description:
-        "A cost-efficient way to scale outreach volume when you have the agent capacity to work it.",
+        "Volume outreach at a lower cost per lead, for teams with the agents to work it.",
       points: [
-        "Available at 1 to 7 days, 30 to 90 days, and older tiers depending on the vertical",
-        "Priced by age, so older records carry a lower cost per lead",
-        "Age and price disclosed upfront on every order",
+        "Tiers from 1 to 7 days, 30 to 90 days, and older",
+        "Priced by age. Older records cost less",
+        "Age and price stated on every order",
       ],
     },
   ],
@@ -86,30 +86,30 @@ export const industries = {
   eyebrow: "Coverage",
   heading: "Industries we serve",
   intro:
-    "Qualification criteria, screening, and agent scripting are built per vertical. Four of the twenty-plus industries we cover:",
+    "Criteria, screening, and scripting are built per vertical. Four of the twenty-plus industries we cover:",
   items: [
     {
       name: "Mortgage",
       icon: "home" as const,
       description:
-        "Purchase and refinance leads, filterable by credit score, LTV, loan balance, property value, and loan type across VA, FHA, and conventional.",
+        "Purchase and refinance, filtered on credit score, LTV, loan balance, property value, and loan type across VA, FHA, and conventional.",
     },
     {
       name: "Legal",
       icon: "scale" as const,
       description:
-        "Mass tort, personal injury, disability, and tax debt intake.",
+        "Mass tort, personal injury, disability, and tax debt.",
     },
     {
       name: "Home Services",
       icon: "wrench" as const,
-      description: "Roofing, solar, HVAC, and window replacement.",
+      description: "Roofing, solar, HVAC, and windows.",
     },
     {
       name: "Business Lending",
       icon: "briefcase" as const,
       description:
-        "Merchant cash advance and short-term working capital, for businesses that need funding faster than a conventional loan process allows.",
+        "Merchant cash advance and working capital, for businesses that need funding faster than a conventional loan allows.",
     },
   ],
 };
@@ -118,25 +118,25 @@ export const callCenter = {
   eyebrow: "Capacity",
   heading: "Call Center Solutions",
   intro:
-    "Trained agents and dialer infrastructure that scale with your campaign, without the cost of building a floor of your own.",
+    "Agents and dialers that scale with the campaign, without building a floor of your own.",
   items: [
     {
       name: "Onshore & Offshore Agents",
       icon: "headset" as const,
       description:
-        "Onshore agents based in Michigan, available 8am to midnight ET, alongside offshore centers in South America, India, Belize, the Philippines, and Mexico. Agents are matched to the role rather than assigned at random, because sales, answering service, and intake each demand a different skill set. No minimum seat commitment.",
+        "Onshore in Michigan, 8am to midnight ET. Offshore across South America, India, Belize, the Philippines, and Mexico. Agents are matched to the work, not assigned at random. No seat minimum.",
     },
     {
       name: "Real Agents, Not AI",
       icon: "spark" as const,
       description:
-        "Every call is handled by a trained person. We have benchmarked our agents against AI dialers repeatedly, and they consistently outperform them at a cost that stays competitive with automation.",
+        "Every call is handled by a person. We have benchmarked our agents against AI repeatedly, and they win on conversion at comparable cost.",
     },
     {
       name: "Dialer Solutions",
       icon: "phone" as const,
       description:
-        "We operate on every major dialer platform, including VICIdial and Five9, so campaigns run on the stack you already use.",
+        "We run on every major platform, VICIdial and Five9 included.",
     },
   ],
 };
@@ -145,28 +145,28 @@ export const process = {
   eyebrow: "How it works",
   heading: "From criteria to closed",
   intro:
-    "The same four steps whether you are buying leads, agent capacity, or both.",
+    "Four steps, whether you are buying leads, agents, or both.",
   // A real sequence, so the steps are numbered.
   steps: [
     {
       name: "Define your criteria",
       description:
-        "Industry, geography, volume, and what qualifies a lead for your sales team. Minimum spend is typically $5,000, with pilot programs available from $1,500.",
+        "Industry, geography, volume, and what counts as qualified for your team. Minimum spend is typically $5,000; pilots start at $1,500.",
     },
     {
-      name: "We build the campaign",
+      name: "Build the campaign",
       description:
-        "Sourcing, script development, compliance review, and a test batch. You get progress updates throughout, not just a delivery date.",
+        "Sourcing, scripting, compliance review, and a test batch, with progress updates throughout.",
     },
     {
-      name: "Delivery begins",
+      name: "Go live",
       description:
-        "Most campaigns are live within 48 hours. Aged lead orders can begin delivering in as little as 12.",
+        "Most campaigns are live in 48 hours. Aged orders can start in 12.",
     },
     {
-      name: "We optimize on your data",
+      name: "Optimize on your data",
       description:
-        "Call recordings and disposition reporting come back to us, and every lead is traced to its source. Performance becomes measurable instead of assumed.",
+        "Call recordings and dispositions come back to us, and every lead traces to its source. Performance gets measured, not assumed.",
     },
   ],
 };
@@ -175,31 +175,31 @@ export const whyUs = {
   eyebrow: "Why us",
   heading: "Why VA Lead Solutions",
   intro:
-    "A team with more than 100 years of combined experience, and years of testing behind every campaign we run.",
+    "More than 100 years of combined experience, and testing behind every campaign we run.",
   points: [
     {
       name: "Exclusivity on your terms",
       icon: "lock" as const,
       description:
-        "Buy a lead sold only to you, or take a semi-exclusive shared across two to three buyers at a lower cost. You know which you are getting before you commit.",
+        "Exclusive to you, or semi-exclusive across two to three buyers at lower cost. You know which before you buy.",
     },
     {
       name: "Leads and agents from one partner",
       icon: "link" as const,
       description:
-        "Most vendors sell one or the other. Sourcing both from one partner removes the handoff between whoever generates the lead and whoever calls it.",
+        "Most vendors sell one or the other. Sourcing both here removes the handoff between who generates the lead and who calls it.",
     },
     {
       name: "Documented consent",
       icon: "shield" as const,
       description:
-        "Every lead ships with a TrustedForm or Jornaya certificate recording the consumer's consent at the point of capture. DNC scrubbing is available on request.",
+        "Every lead ships with a TrustedForm or Jornaya certificate recording consent at capture. DNC scrubbing on request.",
     },
     {
       name: "Pricing that scales",
       icon: "tag" as const,
       description:
-        "Rates move with volume, exclusivity, and industry, so growing campaigns are not billed against a flat rate card.",
+        "Rates move with volume, exclusivity, and industry. No flat rate card.",
     },
   ],
 };
@@ -210,27 +210,27 @@ export const faq = {
   items: [
     {
       q: "What does a lead cost?",
-      a: "Cost is driven by lead type, volume, exclusivity, and industry, so we quote against your criteria rather than publishing a rate card. Minimum spend is typically $5,000, with pilot programs available from $1,500. Call or email us and we will price your campaign.",
+      a: "It depends on lead type, volume, exclusivity, and industry, so we quote against your criteria rather than a rate card. Minimum spend is typically $5,000, with pilots from $1,500.",
     },
     {
       q: "How are leads delivered?",
-      a: "Real-time leads post directly to your CRM by API as they are generated, or arrive as a live transfer to your floor when the lead originates on a call. Scheduled CSV and Dropbox delivery are available where batch intake suits your workflow better.",
+      a: "Real-time leads post to your CRM by API as they are generated, or arrive as a live transfer when the lead starts on a call. Scheduled CSV and Dropbox delivery are available on request.",
     },
     {
       q: "What happens if a lead is bad?",
-      a: "The replacement policy depends on the price point, and we confirm which applies before you order. High-volume leads priced under a dollar are sold as delivered, with that variance already built into the price. On higher-value leads, where a single record can reach $80, credits are reviewed case by case.",
+      a: "It depends on the price point, and we confirm which applies before you order. Leads under a dollar are sold as delivered, with that variance priced in; on higher-value leads, where one record can reach $80, credits are reviewed case by case.",
     },
     {
       q: "Is there a minimum order or contract?",
-      a: "There is no contract term and no lock-in. Minimum spend is typically $5,000, and we run pilot programs from $1,500 for buyers who want to prove the fit first.",
+      a: "No contract term and no lock-in. Minimum spend is typically $5,000, and we run pilots from $1,500 to prove the fit first.",
     },
     {
       q: "What compliance documentation comes with each lead?",
-      a: "Every lead is delivered with a TrustedForm or Jornaya certificate documenting the consumer's consent at the moment it was captured. DNC scrubbing is available on request. Obligations that attach to the party placing the call, including time-of-day restrictions and your internal do-not-call list, remain with the buyer.",
+      a: "Every lead carries a TrustedForm or Jornaya certificate documenting consent at the moment it was captured, and DNC scrubbing is available on request. Obligations that attach to the party placing the call, including time-of-day rules and your internal do-not-call list, stay with the buyer.",
     },
     {
       q: "Can I buy agents without buying leads?",
-      a: "Yes. Many clients contract agents alone, and there is no minimum seat commitment.",
+      a: "Yes. Many clients contract agents only, and there is no seat minimum.",
     },
   ],
 };
@@ -239,7 +239,7 @@ export const contact = {
   eyebrow: "Get started",
   heading: "Get pricing",
   body:
-    "Pricing is set by lead type, volume, exclusivity, and industry. Call or email us with your criteria and we will put a quote together.",
+    "Tell us your criteria and we will quote against it. Call or email.",
   emailLabel: "Email",
 };
 
