@@ -1,9 +1,10 @@
 // ─────────────────────────────────────────────────────────────────────────
 // SITE COPY: everything editable lives here.
 //
-// Every [bracketed] item is a question for Adam. Search this file for "["
-// to find them all in one pass. Nothing else in the codebase needs to change
-// once the answers are in.
+// Every open question has been answered except the phone number below,
+// still flagged in red on the site itself. Any future open question goes in
+// as [bracketed text]; components/ui/AdamPrompt.tsx renders it in red and
+// clears itself automatically once the brackets are replaced with an answer.
 // ─────────────────────────────────────────────────────────────────────────
 
 export const brand = {

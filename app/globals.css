@@ -265,15 +265,6 @@
   .step__title { @apply mt-4 font-display text-xl leading-snug text-ink-950; }
   .step__body { @apply mt-2 text-[15px] leading-relaxed text-charcoal/85; }
 
-  /* ── Stats ─────────────────────────────────────────────────────────────── */
-  .stat { @apply border-l-2 border-line pl-5; transition: border-color var(--dur-card) var(--ease); }
-  .stat:hover { @apply border-teal; }
-  .stat__label { @apply eyebrow text-charcoal/80; }
-  .stat__value {
-    @apply mt-2.5 font-display text-4xl text-ink-950;
-    font-variant-numeric: tabular-nums;
-  }
-
   /* ── Why-us features ───────────────────────────────────────────────────── */
   .feature {
     @apply flex gap-4 rounded-sm border border-transparent p-5;
