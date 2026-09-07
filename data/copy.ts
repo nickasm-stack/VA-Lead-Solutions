@@ -42,7 +42,7 @@ export const hero = {
   eyebrow: "Lead Generation & Call Center Solutions",
   headline: "Qualified leads. Reliable call support.",
   subheadline:
-    "We generate the leads and staff the agents who call them. One partner instead of three.",
+    "Leads, agents, or both, from a single partner.",
   cta: "Call for pricing",
   ctaSecondary: "See what we deliver",
   trust: [
@@ -73,7 +73,7 @@ export const leads = {
       name: "Aged Leads",
       icon: "layers" as const,
       description:
-        "Volume outreach at a lower cost per lead, for teams with the agents to work it.",
+        "A cost-efficient way to scale outreach volume.",
       points: [
         "Tiers from 1 to 7 days, 30 to 90 days, and older",
         "Priced by age and vertical",
