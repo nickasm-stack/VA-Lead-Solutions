@@ -56,7 +56,7 @@ export const leads = {
   heading: "Leads",
   eyebrow: "What we sell",
   intro:
-    "Two ways to buy, priced to your criteria rather than a rate card.",
+    "Multiple ways to buy, priced to your specific criteria.",
   types: [
     {
       name: "Real-Time Leads",
@@ -76,7 +76,7 @@ export const leads = {
         "Volume outreach at a lower cost per lead, for teams with the agents to work it.",
       points: [
         "Tiers from 1 to 7 days, 30 to 90 days, and older",
-        "Priced by age. Older records cost less",
+        "Priced by age and vertical",
         "Age and price stated on every order",
       ],
     },
@@ -87,7 +87,7 @@ export const industries = {
   eyebrow: "Coverage",
   heading: "Industries we serve",
   intro:
-    "Criteria, screening, and scripting are built per vertical. Four of the twenty-plus industries we cover:",
+    "Criteria, screening, and scripting are built per vertical. Some of the larger verticals we cover:",
   items: [
     {
       name: "Mortgage",
@@ -128,7 +128,7 @@ export const callCenter = {
         "Onshore in Michigan, 8am to midnight ET, plus offshore centers worldwide. Matched to the work, with no seat minimum.",
     },
     {
-      name: "Real Agents, Not AI",
+      name: "Call Center AI Alternative",
       icon: "spark" as const,
       description:
         "Every call is handled by a real person. We have tested our agents against AI repeatedly, and they outperform it every time.",
@@ -137,7 +137,7 @@ export const callCenter = {
       name: "Dialer Solutions",
       icon: "phone" as const,
       description:
-        "We run on every major platform, VICIdial and Five9 included.",
+        "We run on most major platforms to fit your call center needs.",
     },
   ],
 };
@@ -188,7 +188,7 @@ export const whyUs = {
       name: "Leads and agents from one partner",
       icon: "link" as const,
       description:
-        "Most vendors sell one or the other. Sourcing both here removes the handoff between who generates the lead and who calls it.",
+        "Buy leads, agents, or both. Most vendors only offer one or the other; sourcing both here removes the handoff between who generates the lead and who calls it.",
     },
     {
       name: "Documented consent",
@@ -260,7 +260,7 @@ export const footer = {
       title: "Call Center",
       links: [
         { label: "Onshore & Offshore Agents", href: "#call-center" },
-        { label: "Real Agents, Not AI", href: "#call-center" },
+        { label: "Call Center AI Alternative", href: "#call-center" },
         { label: "Dialer Solutions", href: "#call-center" },
       ],
     },
