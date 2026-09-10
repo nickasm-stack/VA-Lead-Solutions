@@ -160,7 +160,7 @@ export const process = {
     {
       name: "Optimize on your data",
       description:
-        "Call recordings and dispositions come back to us, and every lead traces to its source. Performance gets measured, not assumed.",
+        "Call recordings and dispositions come back to us, and every lead traces to its source. We use that to keep tuning the campaign as we go.",
     },
   ],
 };
