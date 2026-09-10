@@ -1,22 +1,15 @@
 // ─────────────────────────────────────────────────────────────────────────
 // SITE COPY: everything editable lives here.
 //
-// Every open question has been answered except the phone number below,
-// still flagged in red on the site itself. Any future open question goes in
+// Every open question has been answered. Any future open question goes in
 // as [bracketed text]; components/ui/AdamPrompt.tsx renders it in red and
 // clears itself automatically once the brackets are replaced with an answer.
 // ─────────────────────────────────────────────────────────────────────────
 
 export const brand = {
   name: "VA Lead Solutions",
-  // PLACEHOLDER until the real number arrives. lib/site.ts treats anything
-  // that is not purely digits and phone punctuation as pending, which is what
-  // keeps it flagged in red.
-  phoneDisplay: "X-XXX-XXX-XXXX",
-  // Points at the contact section while the number is unknown, so the call
-  // buttons still go somewhere sensible. Change to `tel:+1...` alongside
-  // phoneDisplay.
-  phoneHref: "#contact",
+  phoneDisplay: "1-800-374-5121",
+  phoneHref: "tel:+18003745121",
   email: "Info@valeadsolutions.com",
   address: {
     street: "30095 Northwestern Highway",
