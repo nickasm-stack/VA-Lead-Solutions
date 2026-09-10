@@ -1,7 +1,7 @@
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/Reveal";
 import { brand, hero } from "@/data/copy";
-import { isPending, hasRealPhone } from "@/lib/site";
+import { isPending } from "@/lib/site";
 import AdamPrompt from "@/components/ui/AdamPrompt";
 
 export default function Hero() {
@@ -32,10 +32,7 @@ export default function Hero() {
               href={brand.phoneHref}
               className="btn btn-invert w-full px-7 py-3.5 text-sm font-semibold sm:w-auto"
             >
-              {hero.cta} &middot;{" "}
-              <span className={hasRealPhone ? undefined : "pending"}>
-                {brand.phoneDisplay}
-              </span>
+              {hero.cta}
             </a>
             <a
               href="#leads"

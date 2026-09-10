@@ -51,10 +51,11 @@ export default function Header() {
         <div className="flex items-center gap-1">
           <a
             href={brand.phoneHref}
-            className={`btn btn-primary hidden px-4 py-2.5 text-sm font-semibold sm:inline-flex${
+            className={`btn btn-primary hidden gap-2 px-4 py-2.5 text-sm font-semibold sm:inline-flex${
               hasRealPhone ? "" : " btn-pending"
             }`}
           >
+            <Icon name="phone" className="h-4 w-4" />
             {brand.phoneDisplay}
           </a>
           <a
