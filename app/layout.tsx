@@ -90,6 +90,7 @@ export const metadata: Metadata = {
     images: ["/opengraph-image.png"],
   },
   formatDetection: { telephone: true, email: true, address: false },
+  verification: { google: "k7lh6GwYuwizrrquCc1lTjzWhAsn00zIwDOf6PicDl4" },
 };
 
 export default function RootLayout({
