@@ -56,6 +56,30 @@ const nextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  // Vercel's domain-level redirect (apex -> www) runs at the edge, before any
+  // request reaches this app, with no way to exclude a path from it. That
+  // meant Googlebot's robots.txt-permission check for the apex host had to
+  // follow a redirect it applied its own (undocumented, occasionally
+  // conservative) judgment to, which is what caused Search Console to report
+  // "blocked by robots.txt" even though the redirect resolved fine in a
+  // browser and the final content was correct.
+  //
+  // Redirecting only "/" here, in app code, and leaving the domain-level
+  // redirect off, means robots.txt/sitemap.xml/icons are served directly on
+  // the apex host with no redirect involved at all, while the one real
+  // content page still canonicalises to www. This requires the apex domain
+  // in Vercel to be attached as a normal serving domain rather than
+  // configured as a "redirect to another domain" alias.
+  async redirects() {
+    return [
+      {
+        source: "/",
+        has: [{ type: "host", value: "valeadsolutions.com" }],
+        destination: "https://www.valeadsolutions.com/",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
