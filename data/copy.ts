@@ -26,6 +26,7 @@ export const nav = {
     { label: "Leads", href: "#leads" },
     { label: "Call Center", href: "#call-center" },
     { label: "How It Works", href: "#process" },
+    { label: "Hear Our Calls", href: "https://calls.valeadsolutions.com/" },
     { label: "Industries", href: "#industries" },
     { label: "FAQ", href: "#faq" },
   ],

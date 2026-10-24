@@ -81,16 +81,20 @@ export default function MobileNav({
           aria-label="Mobile"
           className="flex flex-col px-6 py-2"
         >
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="border-b border-line/70 py-3.5 text-base text-charcoal/90 transition-colors last:border-0 hover:text-teal active:text-teal-dark"
-            >
-              {link.label}
-            </a>
-          ))}
+          {links.map((link) => {
+            const external = link.href.startsWith("http");
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                onClick={() => setOpen(false)}
+                className="border-b border-line/70 py-3.5 text-base text-charcoal/90 transition-colors last:border-0 hover:text-teal active:text-teal-dark"
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </nav>
       </div>
     </div>

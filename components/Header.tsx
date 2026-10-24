@@ -37,15 +37,19 @@ export default function Header() {
         </a>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
-          {nav.links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="link-underline text-sm text-charcoal/80 hover:text-ink-950"
-            >
-              {link.label}
-            </a>
-          ))}
+          {nav.links.map((link) => {
+            const external = link.href.startsWith("http");
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="link-underline text-sm text-charcoal/80 hover:text-ink-950"
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-1">
